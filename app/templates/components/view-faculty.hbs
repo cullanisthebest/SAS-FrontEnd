@@ -1,0 +1,52 @@
+{{#if  isViewingFaculties }}
+
+
+  <div class="studentsbox">
+    <ul class="circle">
+      <ul>
+        {{#each facultyModel as |facultyChoice|}}
+        <div class="row">    
+          {{view-department ID=facultyChoice.id}}
+          <div class="large-3 columns">
+            {{facultyChoice.name}}
+          </div>
+          <div class="large-2 columns">
+            {{delete-faculty ID=facultyChoice.id}}
+          </div>
+        </div>
+        {{/each}}
+      </ul>
+    </ul>
+  </div>
+
+
+
+<!-- <br>
+<div class="row">
+	<h3 align="center">Faculties</h3>
+	<hr/>
+    {{#each facultyModel as |facultyChoice|}}
+      	<div class="row" align="left">
+        	<div class="large-1 columns">
+          		{{delete-faculty ID=facultyChoice.id}}
+        	</div>
+        	<div class="large-11 columns">
+          		<h3>{{facultyChoice.name}}</h3>
+        	</div>
+      	</div>
+    	<div class="row" align="left">
+    		<div class="large-12 columns">
+          		{{view-department ID=facultyChoice.id}}
+          	</div>
+        </div>
+        <br>
+    {{/each}}
+</div>
+<a href="#" class="button radius" {{action 'doneViewingFaculties'}}>Hide Faculties</a>
+{{else}}
+    <div class="row">
+        <div class="large-12 columns">
+        	<a href="#" class="button round main" {{action 'viewFaculties'}}>View Faculties</a>
+        </div>
+    </div> -->
+{{/if}}

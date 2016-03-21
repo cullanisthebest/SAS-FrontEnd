@@ -1,0 +1,38 @@
+{{#if  isViewingLogicalexpressions }}
+    <br>
+    <div>
+        <table>
+        {{#each logicalexpressions as |logicalexpressionChoice|}}
+<!--             <div class="row" align="left">
+                <div class="large-1 columns">
+                    {{delete-logicalexpression ID=logicalexpressionChoice.id}}
+                </div>
+                <div class="large-11 columns">
+                    <h5>{{logicalexpressionChoice.booleanExp}}</h5>
+                </div>
+            </div> -->
+
+            <tr>
+                <td>
+                    {{logicalexpressionChoice.booleanExp}}
+                </td>
+                <td>
+                    {{delete-logicalexpression ID=logicalexpressionChoice.id}}
+                </td>
+            </tr>
+
+        {{/each}}
+    </table>
+
+        <div align="center">
+            <a href="#" class="button primary tiny" {{action 'doneViewingLogicalexpressions'}}>Hide</a>
+        </div>
+
+    </div>
+{{else}}
+    <div class="row">
+        <div class="large-12 columns">
+            <a href="#" class="button primary tiny table" {{action 'viewLogicalexpressions'}}>View</a>
+        </div>
+    </div>
+{{/if}}

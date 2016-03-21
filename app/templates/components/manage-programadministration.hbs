@@ -1,0 +1,79 @@
+{{#if  isManagingProgramadministration }}
+<div class="row">
+  <div class="large-12 columns">
+    <br>
+    <h4 align="center">Add New Program Administration</h4>
+    <hr/>
+    <br>
+    <fieldset>
+      <legend>Please use the form below</legend>
+      <br>
+      <form>
+        <div class="row">
+          <div class="large-12 columns">
+            <div class="row collapse prefix-radius">
+              <div class="small-3 columns">
+                <span class="prefix">Program</span>
+              </div>
+              <div class="small-9 columns">
+                <select onchange={{action (mut selectedAcademicprogramcode) value="target.value"}}>
+                  {{#each academicprogramcodeModel as |academicprogramcodeChoice|}}
+                  <option value={{academicprogramcodeChoice.id}} selected={{eq selectedAcademicprogramcode academicprogramChoice}}>{{academicprogramcodeChoice.name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <br>
+          </div>
+
+          <div class="large-12 columns">
+            <div class="row collapse prefix-radius">
+              <div class="small-3 columns">
+                <span class="prefix">Department</span>
+              </div>
+              <div class="small-9 columns">
+                <select onchange={{action (mut selectedDepartment) value="target.value"}}>
+                  {{#each departmentModel as |departmentChoice|}}
+                  <option value={{departmentChoice.id}} selected={{eq selectedDepartment departmentChoice}}>{{departmentChoice.name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <br>
+          </div>  
+
+          <div class="large-12 columns">
+            <div class="row collapse prefix-radius">
+              <div class="small-3 columns">
+                <span class="prefix">Name</span>
+              </div>
+              <div class="small-9 columns">
+                {{input value=name  type="text" placeholder="enter name"}}
+              </div>
+            </div>
+          </div>
+          <div class="large-12 columns">
+            <div class="row collapse prefix-radius">
+              <div class="small-3 columns">
+                <span class="prefix">Position</span>
+              </div>
+              <div class="small-9 columns">
+                {{input value=position  type="text" placeholder="enter position"}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </fieldset>
+    <br>
+    <a href="#" class="button primary tiny" {{action 'saveProgramadministration'}}>Save</a>
+    <a href="#" class="button primary tiny" {{action 'cancel'}}>Cancel</a>
+  </div>
+</div>
+{{else}}
+<div class="row">
+  <div class="large-12 columns">
+    <a href="#" class="button tiny notmain" {{action 'addNewProgramadministration'}}>Add New Program Administration</a>
+  </div>
+</div>
+{{/if}}

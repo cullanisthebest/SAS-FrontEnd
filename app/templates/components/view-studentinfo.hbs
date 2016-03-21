@@ -1,0 +1,96 @@
+{{#if  isStudentinfoFormEditing }}
+<div class="row">
+    <div class="large-12 columns">
+        <br>
+        <hr/>
+        <h3 align="center">{{firstname}}'s Student Information</h3>
+
+        <div class="row" align="center">
+            <table>
+                <tr>
+                    <td>
+                        <strong>Student Number</strong>
+                    </td>
+                    <td>
+                        {{number}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Name</strong>
+                    </td>
+                    <td>
+                        {{firstname}} {{lastname}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Date of Birth</strong>
+                    </td>
+                    <td>
+                        {{dob}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Gender</strong>
+                    </td>
+                    <td>
+                        {{oneStudent.gender.name}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Residency</strong>
+                    </td>
+                    <td>
+                        {{oneStudent.resInfo.name}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       <strong>Country</strong>
+                    </td>
+                    <td>
+                        {{oneStudent.country.name}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Province</strong>
+                    </td>
+                    <td>
+                        {{oneStudent.province.name}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>City</strong>
+                    </td>
+                    <td>
+                        {{oneStudent.city.name}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Academic Load</strong>
+                    </td>
+                    <td>
+                        {{oneStudent.academicload.name}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <a href="#" class="button primary tiny" {{action 'cancel'}}>Done</a>
+    </div>
+</div>
+{{else}}
+
+<div class="large-1 columns">
+    <a href="#" class="button primary tiny"  {{action 'viewStudentinfo'}}>Info</a>
+</div>
+
+{{/if}}
+
+

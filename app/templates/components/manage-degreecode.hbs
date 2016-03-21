@@ -1,0 +1,73 @@
+{{#if isManagingDegreecode}}
+<div class="row">
+  <div class="large-12 columns">
+    <h4 align="center"> Manage Degree Code</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-10  large-centered columns">
+    <div class="panel">
+      {{#if isAddingNewDegreecode}}
+      <h4>Add new degree code</h4>
+      <form>
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Name
+              {{input value=name  type="text" }}
+            </label>
+          </div>
+        </div>
+      </form>
+      <div class="row">
+        <div class="large-12 columns">
+          <a href="#" class="button primary tiny" {{action 'saveNewDegreecode'}}>Save</a>
+          <a href="#" class="button primary tiny" {{action 'cancelAddNewDegreecode'}}>Cancel</a>
+        </div>
+      </div>
+      <br>
+      {{else}}
+      <table>
+        <tr>
+          <th>
+            Degree Code
+          </th>
+          <th>
+            Delete
+          </th>
+        </tr>
+      {{#each degreecodeModel as |oneDegreecode|}}
+<!--       <div class="row">
+        <li class="large-3 columns">  {{oneDegreecode.name}} </li>
+        {{delete-degreecode ID=oneDegreecode.id}}
+      </div> -->
+
+      <tr>
+        <td>
+          {{oneDegreecode.name}}
+        </td>
+        <td>
+          {{delete-degreecode ID=oneDegreecode.id}}
+        </td>
+      </tr>
+      {{/each}}
+    </table>
+      <div class="row">
+        <div class="large-12 columns">
+          <br>
+          <a href="#" class="button primary tiny full" {{action 'addNewDegreecode'}}>Add new degree code</a>
+          <a href="#" class="button primary tiny" {{action 'doneDegreecode'}}>Done</a>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+{{else}}
+<div class="large-2 columns">
+  <a href="#" class="button round tiny" {{action 'manageDegreecode' }}>More</a>
+</div>
+{{/if}}
+
+

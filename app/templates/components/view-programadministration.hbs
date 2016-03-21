@@ -1,0 +1,35 @@
+{{#if  isViewingProgramadministration }}
+<br>
+<div>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Delete</th>
+    </tr>
+    {{#each programadministrations as |programadministrationChoice|}}
+<!--     <div class="row" align="left">
+        <div class="large-1 columns">
+            {{delete-programadministration ID=programadministrationChoice.id}}
+        </div>
+        <div class="large-11 columns">
+            {{programadministrationChoice.name}}
+        </div>
+    </div> -->
+    <tr>
+        <td>{{programadministrationChoice.name}}</td>
+        <td>{{programadministrationChoice.position}}</td>
+        <td>{{delete-programadministration ID=programadministrationChoice.id}}</td>
+    </tr>
+    {{/each}}
+    <div align="center">
+        <br>
+        <a href="#" class="button primary tiny" {{action 'doneViewingPrograms'}}>Hide</a>
+    </div>
+</div>
+{{else}}
+<div class="row">
+    <div class="large-12 columns">
+        <a href="#" class="button primary tiny table" {{action 'viewProgramadministration'}}>View</a>
+    </div>
+</div>
+{{/if}}

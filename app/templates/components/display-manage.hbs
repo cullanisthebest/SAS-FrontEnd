@@ -1,0 +1,72 @@
+<nav class="top-bar" data-topbar>
+  <section class="top-bar-section">
+    <ul class="center-buttons">
+      <li class="divider"></li>
+      <li><a href="#" {{action 'manageStudents'}}>Manage Students</a></li>
+      <li class="divider"></li>
+      <li><a href="#" {{action 'manageGrades'}}>Manage Grades</a></li>
+      <li class="divider"></li>
+      <li><a href="#" {{action 'manageDistributionresults'}}>Manage Distribution Results</a></li>
+      <li class="divider"></li>
+      <li><a href="#" {{action 'manageItrprograms'}}>Manage ITR Programs</a></li>
+      <li class="divider"></li>
+      <li><a href="#" {{action 'manageProgramadministration'}}>Manage Program Administration</a></li>
+      <li class="divider"></li>
+      <li><a href="#" {{action 'manageAdmissionrules'}}>Manage Admission Rules</a></li>
+      <li class="divider"></li>
+    </ul>
+  </section>
+</nav>
+<br>
+
+<div align="center">
+  {{#if isManagingStudents}}
+  {{add-new-student}} 
+  
+  {{else if isManagingGrades}}
+  {{manage-programrecord}}
+  {{manage-grade}}
+  
+  {{else if isManagingDistributionresults}}
+  {{manage-distributionresult}}
+  {{manage-commentcode}}
+
+  {{else if isManagingItrprograms}}
+  {{manage-academicprogramcode}}
+  {{manage-itrprogram}}
+
+  {{else if isManagingProgramadministration}}
+  {{view-faculty}}
+  <br>
+  {{manage-faculty}}
+  {{manage-department}}
+  {{manage-programadministration}}
+
+  {{else if isManagingAdmissionrules}}
+  {{manage-admissionrule}}
+  {{manage-logicalexpression}}
+  {{view-admissionrule}}
+  {{/if}}
+</div>
+
+  {{#if isManagingStudents}}
+  <div class="studentsbox">
+    <ul class="circle">
+      <ul>
+        {{#each model as |oneStudent|}}
+        <div class="row">
+          {{edit-student ID=oneStudent.id Model=model}}
+          {{view-grades ID=oneStudent.id name=oneStudent.firstName number=oneStudent.number}}
+          {{view-studentinfo ID=oneStudent.id}}
+          <div class="large-3 columns">
+            {{oneStudent.firstName}} {{oneStudent.lastName}} ({{oneStudent.number}})
+          </div>
+          <div class="large-2 columns">
+            {{delete-student ID=oneStudent.id}}
+          </div>
+        </div>
+        {{/each}}
+      </ul>
+    </ul>
+  </div>
+{{/if}}

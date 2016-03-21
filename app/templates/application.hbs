@@ -1,0 +1,45 @@
+{{#liquid-if oudaAuth.isAuthenticated class="letusstart"}}
+    <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+
+    <div class="row">
+        <p class="loggedin"> Logged in as:  {{oudaAuth.getName}}</p>
+    </div>
+            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+            <!-- Right Nav Section -->
+            <ul class="right">
+                <li >{{#link-to 'students'}}All Students{{/link-to}}</li>
+                <li >{{#link-to 'user'}}User Profile{{/link-to}}</li>
+                <li >{{#link-to 'adminPortal'}}Admin Portal{{/link-to}}</li>
+                <li> {{log-out name=oudaAuth.getName}} </li>
+
+            </ul>
+
+            <!-- Left Nav Section -->
+            <ul class="left">
+
+            </ul>
+        </section>
+    </nav>
+
+    <div class="row">
+        <div class="large-12 columns">
+          {{liquid-outlet}}
+        </div>
+    </div>
+{{else}}
+  {{#unless oudaAuth.getName}}
+
+  {{liquid-outlet "login"}}
+  {{/unless}}
+
+{{/liquid-if}}
+
+
+
+
+

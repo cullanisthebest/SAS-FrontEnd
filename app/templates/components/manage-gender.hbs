@@ -1,0 +1,75 @@
+{{#if isManagingGender}}
+<div class="row">
+  <div class="large-12 columns">
+    <h4 align="center"> Manage Gender</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-10  large-centered columns">
+    <div class="panel">
+      {{#if isAddingNewGender}}
+      <h4>Add new gender</h4>
+      <form>
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Name
+              {{input value=name  type="text" }}
+            </label>
+          </div>
+        </div>
+      </form>
+      <div class="row">
+        <div class="large-12 columns">
+          <a href="#" class="button primary tiny" {{action 'saveNewGender'}}>Save</a>
+          <a href="#" class="button primary tiny" {{action 'cancelAddNewGender'}}>Cancel</a>
+        </div>
+      </div>
+      <br>
+      {{else}}
+      <table>
+        <tr>
+          <th>
+            Gender
+          </th>
+          <th>
+            Delete
+          </th>
+        </tr>
+      {{#each genderModel as |oneGender|}}
+<!--       <div class="row">
+        <li class="large-3 columns">  {{oneGender.name}} </li>
+
+        <div class="large-2 columns">
+          {{delete-gender ID=oneGender.id }}
+        </div>
+      </div> -->
+      <tr>
+        <td>
+          {{oneGender.name}}
+        </td>
+        <td>
+          {{delete-gender ID=oneGender.id}}
+        </td>
+      </tr>
+      {{/each}}
+    </table>
+      <div class="row">
+        <div class="large-12 columns">
+          <br> 
+          <a href="#" class="button primary tiny full" {{action 'addNewGender'}}>Add new gender</a>
+          <a href="#" class="button primary tiny" {{action 'doneGender'}}>Done</a>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+{{else}}
+<div class="large-2 columns">
+  <a href="#" class="button round tiny" {{action 'manageGender' }}>More</a>
+</div>
+{{/if}}
+
+

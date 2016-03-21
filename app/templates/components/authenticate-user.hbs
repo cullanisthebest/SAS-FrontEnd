@@ -1,0 +1,60 @@
+<!-- Display the login screen with the main application background -->
+{{#if isPasswordChanging}}
+    <section class="hero">
+        <div class="row intro">
+            <div  >
+                <div class="row">
+                    <div class="large-10  large-centered columns">
+                        <div class="panel">
+                            <h3>Please change your password and login again</h3>
+                            <br>
+                            <div class="row">
+                                <div class="small-3 columns">
+                                    <label class="right">Enter Password</label>
+                                </div>
+                                <div class="small-7 columns" class="left">
+                                  {{input value=firstPassword type="password" }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-3 columns">
+                                    <label class="right">Reenter Password</label>
+                                </div>
+                                <div class="small-7 columns" class="left">
+                                  {{input value=secondPassword type="password" }}
+                                </div>
+                            </div>
+                            <br> <br>
+                            <a href="#" class="button radius" {{action 'save'}}>Save</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{{else}}
+    <section class="hero">
+        <div class="row intro">
+            <div  >
+                <div class="row">
+                    <div class="medium-6 medium-centered large-4 large-uncentered columns">
+                        <div class="row column log-in-form">
+                            <label>User Name
+                              {{input value=name  type="text" placeholder="user name"}}
+                            </label>
+                            <label>Password
+                              {{input value=password  type="password" placeholder="password"}}
+                            </label>
+                            <p><a href="#" class="button primary tiny other" {{action 'login'}}>Log In</a></p>
+                            <p> {{errorMessage}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{{/if}}
+

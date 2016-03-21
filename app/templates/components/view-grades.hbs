@@ -1,0 +1,44 @@
+{{#if  isGradesFormEditing }}
+<div class="row">
+	<div class="large-12 columns">
+		<br>
+		<hr/>
+		<h3 align="center">{{firstname}}'s Transcript</h3>
+
+		<div class="row" align="center">
+			<table>
+				<tr>
+					<th>Course Name</th>
+					<th>Course Code</th>
+					<th>Course Number</th>
+					<th>Course Unit</th>
+					<th>Grade</th>
+					<!-- <th>Edit</th> -->
+					<th>Delete</th>
+				</tr>
+
+				{{#each grades as |oneGrade|}}
+				<tr>
+					<td>{{oneGrade.coursecode.name}} </td>
+					<td>{{oneGrade.coursecode.code}} </td>
+					<td>{{oneGrade.coursecode.number}} </td>
+					<td>{{oneGrade.coursecode.unit}} </td>
+					<td>{{oneGrade.mark}}</td>
+					<!-- <td>{{input class="textbox" value=newGrade type="text" placeholder=oneGrade.mark }}</td> -->
+					<!-- <td><a href="#" class="button info tiny delete" {{action 'updateGrade' gradeID=oneGrade.id}}>Update</a></td> -->
+					<td>{{delete-grade ID=oneGrade.id}}</td>
+				</tr>
+				{{/each}}
+			</table>
+		</div>
+		
+		<a href="#" class="button primary tiny" {{action 'cancel'}}>Done</a>
+	</div>
+</div>
+{{else}}
+
+<div class="large-1 columns">
+	<a href="#" class="button primary tiny"  {{action 'viewGrades'}}>Grades</a>
+</div>
+
+{{/if}}
