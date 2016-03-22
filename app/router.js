@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('adminPortal');
   this.route('home');
   this.route('user');
+  this.route('load');
 });
 
 export default Router;

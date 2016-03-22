@@ -23,5 +23,8 @@ module.exports = function(defaults) {
   app.import('bower_components/foundation/css/foundation.css');
   app.import('bower_components/foundation/css/normalize.css');
 
+  // app.import('bower_components/js-xlsx/xlsx.js');
+  // app.import('node_modules/xlsx/xlsx.js');
+
   return app.toTree();
 };
