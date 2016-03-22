@@ -20,7 +20,7 @@ export default Ember.Component.extend({
       if (this.get('name') === "root"){
         authentication.openRoot(this.get('password')).then(function (name) {
           authentication.set('getName', name);
-          self.get('routing').transitionTo('home');
+          self.get('routing').transitionTo('students');
         }, function (error) {
                 console.log(error);
         });
@@ -29,7 +29,7 @@ export default Ember.Component.extend({
           //console.log(userRole);
           authentication.set('getName', self.get('name'));
           self.set('error', null);
-          self.get('routing').transitionTo('home');
+          self.get('routing').transitionTo('students');
         }, function (error) {
           if (error === "passwordReset") {
             self.set('isPasswordChanging', true);

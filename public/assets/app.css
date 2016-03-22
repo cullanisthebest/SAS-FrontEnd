@@ -198,12 +198,35 @@ form .row .prefix-radius.row.collapse .prefix {
 
   .row.column.log-in-form{
     margin: auto;
-    width: 250px;
+    width: 291px;
     padding: 25px;
-    background-color: #F2F0F7 !important;
-    border: 5px solid #393C9E;
+    background-color: #FFFFFF !important;
+    /*border: 2px solid #393C9E;*/
+    height:100vh;
+    margin:0px 25px 0px 50px !important;
   }
 
     .row.column.log-in-form label {
       font-weight:bold;
+    }
+
+    .hero.login{
+      background-image: url("images/western-2.jpg") !important;
+      background-size: cover;
+      background-position: center top; 
+      height:100vh;
+    }
+
+    .westernLogo{
+      margin-left:20px;
+      margin-top:-25px;
+      width:200px;
+    }
+
+    .title{
+      font-weight:bold;
+    }
+
+    .labelmargin input{
+      margin-top:10px;
     }

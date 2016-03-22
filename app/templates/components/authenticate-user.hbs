@@ -36,16 +36,19 @@
 
 
 {{else}}
-    <section class="hero">
+    <section class="hero login">
         <div class="row intro">
             <div  >
                 <div class="row">
                     <div class="medium-6 medium-centered large-4 large-uncentered columns">
                         <div class="row column log-in-form">
-                            <label>User Name
+                            <img class="westernLogo" src="assets/images/Western.gif">
+                            <h5 class="title">Students Admission System</h5>
+                            <hr>
+                            <label class="labelmargin">User Name
                               {{input value=name  type="text" placeholder="user name"}}
                             </label>
-                            <label>Password
+                            <label class="labelmargin">Password
                               {{input value=password  type="password" placeholder="password"}}
                             </label>
                             <p><a href="#" class="button primary tiny other" {{action 'login'}}>Log In</a></p>
