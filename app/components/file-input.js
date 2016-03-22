@@ -5,6 +5,7 @@ import Ember from 'ember';
 //XLSX = require('xlsx');
 
 export default Ember.TextField.extend({
+	store: Ember.inject.service(),
 	type: 'file',
 	change: function(e) {
 		let self = this;
@@ -17,13 +18,13 @@ export default Ember.TextField.extend({
 
 		let inputFile = inputFiles[0];
 
-		let fileInfo = {
-			name: inputFile.name,
-			type: inputFile.type || 'n/a',
-			size: inputFile.size,
-			date: inputFile.lastModifiedDate ?
-			inputFile.lastModifiedDate.toLocaleDateString() : 'n/a',
-		};
+		// let fileInfo = {
+		// 	name: inputFile.name,
+		// 	type: inputFile.type || 'n/a',
+		// 	size: inputFile.size,
+		// 	date: inputFile.lastModifiedDate ?
+		// 	inputFile.lastModifiedDate.toLocaleDateString() : 'n/a',
+		// };
 
 		console.log(inputFile);
 
@@ -31,15 +32,13 @@ export default Ember.TextField.extend({
 
 		fileReader.onload = function(e) {
 			var buffer = e.target.result;
-			console.log("buffer:" + buffer);
 
 			var workbook = XLSX.read(buffer, {type: 'binary'});
-			console.log("workbook: " + workbook);
-			console.log("stringify: " + JSON.stringify(workbook));
 
 			var first_sheet_name = workbook.SheetNames[0];
 			var worksheet = workbook.Sheets[first_sheet_name];
 
+			//convert workbook to csv
 			function to_csv(workbook) {
 				var result = [];
 				workbook.SheetNames.forEach(function(sheetName) {
@@ -53,29 +52,64 @@ export default Ember.TextField.extend({
 				return result.join("\n");
 			}
 
-			function process_wb(wb) {
+			//output the workbook as csv
+			function process_student_wb(wb) {
 				var output = to_csv(wb);
+				var row = $.csv.toArrays(output);
+				//console.log(row);
+
+				for(var i=0; i<5; i++){
+					if(row[2][i] == "number")
+						var numberIndex = i;
+					else if(row[2][i] == "firstName")
+						var firstNameIndex = i;
+					else if(row[2][i] == "lastName")
+						var lastNameIndex = i;
+					else if(row[2][i] == "gender")
+						var genderIndex = i;
+					else if(row[2][i] == "DOB")
+						var DOBIndex = i;
+					else if(row[2][i] == "residency")
+						var residencyIndex = i;
+				}
+
+				for (var i=3; i<5; i++){
+					saveStudent(row[i][numberIndex], row[i][firstNameIndex], row[i][lastNameIndex], row[i][genderIndex], row[i][DOBIndex], row[i][residencyIndex]);
+				}
+
 				if(out.innerText === undefined) out.textContent = output;
 				else out.innerText = output;
-				console.log("output-content" + output);
 			}
 
-			process_wb(workbook);
+		      function saveStudent (number, firstName, lastName, gender, DOB, residency) {
+		        var myStore = self.get('store');
 
-			var range = {s:{c:0, r:0}, e: {c:5, r:16}};
+				myStore.query('residency', {name: residency}).then(function (residencies) {
+					var oneResidency = residencies.objectAt(0);
 
-			for(var R = range.s.r; R <= range.e.r; ++R) {
-			  for(var C = range.s.c; C <= range.e.c; ++C) {
-			    var cell_address = {c:C, r:R};
-			    console.log(cell_address);
-			    var desired_cell = worksheet[cell_address];
-			    console.log(desired_cell);
-			    var desired_value = desired_cell.v;
-			    console.log(desired_value);
-			  }
-			}
+					myStore.query('gender', {name: gender}).then(function (genders) {
+						var oneGender = genders.objectAt(0);
+						
+						var newStudent = myStore.createRecord('student', {
+				          number: number,
+				          firstName: firstName,
+				          lastName: lastName,
+				          DOB: DOB,
+				          resInfo: oneResidency,
+				          gender: oneGender,
+				          country: "",
+				          province: "",
+				          city: "",
+				          academicload: ""
+				        });
+				        newStudent.save()
+				    });
+				});
+		      }
 
+			process_student_wb(workbook);
 		}
+		//read in the input file
 		fileReader.readAsBinaryString(inputFile);
-	},
+	}
 });
