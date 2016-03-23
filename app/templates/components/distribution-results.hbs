@@ -1,0 +1,44 @@
+{{#if  isResulting }}
+
+<h4>Hello Canadia</h4>
+
+
+<h3 align="center">{{student}}'s Transcript</h3>
+
+{{!--{{#each student as |oneStudent|}}
+				<tr>
+					<td>{{oneStudent.firstname}} </td>
+					{{#each grades as |oneGrade|}}
+						<td>{{oneGrade.mark}} </td>
+					{{/each}}
+					<td>{{oneStudent.number}} </td>
+				</tr>
+{{/each}}--}}
+
+
+
+
+
+
+<div class="row">
+  <div class="large-12 columns">
+    <a href="#" class="button tiny notmain" {{action 'done'}}>Done</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+{{else}}
+
+<div class="row">
+  <div class="large-12 columns">
+    <a href="#" class="button tiny notmain" {{action 'distributeResults'}}>Distribute Results</a>
+  </div>
+</div>
+
+
+{{/if}}

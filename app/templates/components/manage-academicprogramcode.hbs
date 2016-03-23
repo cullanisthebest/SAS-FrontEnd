@@ -27,7 +27,28 @@
           </div>
         </div>
         <div class="row">
-          <div class="large-12 columns">
+
+        <!--ALAN EDIT-->
+
+        <div class="large-12 columns">
+            <div class="row collapse prefix-radius">
+              <div class="small-3 columns">
+                <span class="prefix">Program</span>
+              </div>
+              <div class="small-9 columns">
+                <select onchange={{action (mut selectedAcademicprogramcode) value="target.value"}}>
+                  {{#each academicprogramcodeModel as |academicprogramcodeChoice|}}
+                  <option value={{academicprogramcodeChoice.id}} selected={{eq selectedAcademicprogramcode academicprogramChoice}}>{{academicprogramcodeChoice.name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <br>
+          </div>
+
+          <!--END EDIT-->
+          
+       <!--   <div class="large-12 columns">
             <div class="row collapse prefix-radius">
               <div class="small-3 columns">
                 <span class="prefix">Program Name</span>
@@ -37,8 +58,9 @@
               </div>
             </div>
             <br>
-          </div>
+          </div>-->
         </div>
+
       </form>
     </fieldset>
     <br>

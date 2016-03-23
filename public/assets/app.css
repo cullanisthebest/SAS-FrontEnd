@@ -244,3 +244,7 @@ form .row .prefix-radius.row.collapse .prefix {
       width:200px; 
       padding-bottom:30px;
     }
+
+    #ember623, #ember1030, #ember682{
+      background-color: white !important;
+    }
