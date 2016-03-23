@@ -1,16 +1,20 @@
-{{#if file}}
-<img src="{{file.dataURL}}" width="300">
 
-<ul>
-  <li>Name: {{file.name}}</li>
-  <li>Type: {{file.type}}</li>
-  <li>Size: {{file.size}} bytes</li>
-  <li>Last modified: {{file.date}}</li>
-</ul>
-{{/if}}
+<img src="assets/images/Western.gif">
+<h3>Data Import</h3>
+<div class="loadbox">
 
-<br>
+	<h5 class="datamargin">Select data input type:</h5>
+	<select class="shortwidth centerthis" onchange={{action (mut inputType) value='target.value'}}>
+		{{#each inputTypes as |inputTypeChoice|}}
+		<option value={{inputTypeChoice}} selected={{eq inputType inputTypeChoice}}>{{inputTypeChoice}}</option>
+		{{/each}}
+	</select>
 
-{{file-input fileChanged="fileSelectionChanged"}}
+	<br><br>
+
+	<div class="centerthis fileinput" align="center">
+		{{file-input fileChanged="fileSelectionChanged" selectedInputType=inputType}}
+	</div>
+</div>
 
 <pre id="out"></pre>
