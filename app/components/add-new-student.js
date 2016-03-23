@@ -73,6 +73,7 @@ export default Ember.Component.extend({
           firstName: this.get('firstName'),
           lastName: this.get('lastName'),
           DOB: this.get('DOB'),
+          CumAvg: "",
           resInfo: chosenResidency,
           gender: chosenGender,
           country: chosenCountry,
