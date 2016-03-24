@@ -125,70 +125,70 @@ export default Ember.Component.extend({
 			
 
 
-			this.set('student', myStore.findAll('student')).then(function(e){
+			// this.set('student', myStore.findAll('student')).then(function(e){
 				
-				//iterate through students
-				for (var i = 0; i < e.get('length'); i++){
+			// 	//iterate through students
+			// 	for (var i = 0; i < e.get('length'); i++){
 
-					//change firstName to Average, then push
-					gradesArray.push([e.objectAt(i).get('cumAvg'), e.objectAt(i).get('id')]);
-				}					
+			// 		//change firstName to Average, then push
+			// 		gradesArray.push([e.objectAt(i).get('cumAvg'), e.objectAt(i).get('id')]);
+			// 	}					
 				
-					//sort up this homie (descending)
-					gradesArray.sort(function sortFunction(a, b) {
-				    	if (a[0] === b[0]) {
-				        	return 0;
-					    }
-					    else {
-					        return (a[0] > b[0]) ? -1 : 1;
-					    }
-					});
+			// 		//sort up this homie (descending)
+			// 		gradesArray.sort(function sortFunction(a, b) {
+			// 	    	if (a[0] === b[0]) {
+			// 	        	return 0;
+			// 		    }
+			// 		    else {
+			// 		        return (a[0] > b[0]) ? -1 : 1;
+			// 		    }
+			// 		});
 					
-					//console.log(gradesArray);
+			// 		//console.log(gradesArray);
 
-					//var studentChoicesArr = [];
-					//loop from here, change hard code upper bound
-					for (var allStudents = 0; allStudents < 2; allStudents++ ){
-			       		myStore.query('itrprogram',{student: gradesArray[allStudents][1]}).then(function (studentChoices) {
-			       			var tempArr = [];
-			       			for (var a = 0; a < studentChoices.get('length'); a++){
-			       				var id = studentChoices.objectAt(a).get('academicprogramcode').get('id');
-			 					var program = myStore.peekRecord('academicprogramcode', id);
-			 					var admissionRuleId = program.get('admissionrule').get('id');
-			       				tempArr.push(admissionRuleId);
-			 				}//end studentchoices for loop
-			 				studentChoicesArr.push(tempArr);
-			 				//console.log(studentChoicesArr[1])
-			       		})
-					}//end allstudents for loop
-					console.log(studentChoicesArr);
-					console.log(studentChoicesArr[0]);
+			// 		//var studentChoicesArr = [];
+			// 		//loop from here, change hard code upper bound
+			// 		for (var allStudents = 0; allStudents < 2; allStudents++ ){
+			//        		myStore.query('itrprogram',{student: gradesArray[allStudents][1]}).then(function (studentChoices) {
+			//        			var tempArr = [];
+			//        			for (var a = 0; a < studentChoices.get('length'); a++){
+			//        				var id = studentChoices.objectAt(a).get('academicprogramcode').get('id');
+			//  					var program = myStore.peekRecord('academicprogramcode', id);
+			//  					var admissionRuleId = program.get('admissionrule').get('id');
+			//        				tempArr.push(admissionRuleId);
+			//  				}//end studentchoices for loop
+			//  				studentChoicesArr.push(tempArr);
+			//  				//console.log(studentChoicesArr[1])
+			//        		})
+			// 		}//end allstudents for loop
+			// 		console.log(studentChoicesArr);
+			// 		console.log(studentChoicesArr[0]);
 
-					//console.log(studentChoicesArr.firstObject);
+			// 		//console.log(studentChoicesArr.firstObject);
 
-					// for (var one in studentChoicesArr){
-					// 	console.log(one);
-					// }
+			// 		// for (var one in studentChoicesArr){
+			// 		// 	console.log(one);
+			// 		// }
 
-					//console.log(studentChoicesArr[0]);
-					//console.log(studentChoicesArr.length);
-					// for(var ruleIndex = 0; ruleIndex < 2; ruleIndex++){
-					// 	var fullTempArray = [];
-					// 	for(var ruleSpecificIndex = 0; ruleSpecificIndex < 10; ruleSpecificIndex++){
-					// 		myStore.query('logicalexpression',{admissionrule: studentChoicesArr[ruleIndex][ruleSpecificIndex]}).then(function (expression) {
-					// 			var oneTempArray = [];
-					// 			for (var x = 0 ; x < expression.get('length'); x++){
-					// 				var exp = expression.objectAt(x).get('booleanExp')
-					// 				oneTempArray.push(exp);
-					// 			}//end logical expressions
-					// 			//console.log(oneTempArray);
-					// 			fullTempArray.push(oneTempArray);
-					// 		});
-					// 	}
-					// 	logicalExpressionArr.push(fullTempArray);
-					// }//end of ruleIndex for loop
-					// //console.log(logicalExpressionArr);
-				});
+			// 		//console.log(studentChoicesArr[0]);
+			// 		//console.log(studentChoicesArr.length);
+			// 		// for(var ruleIndex = 0; ruleIndex < 2; ruleIndex++){
+			// 		// 	var fullTempArray = [];
+			// 		// 	for(var ruleSpecificIndex = 0; ruleSpecificIndex < 10; ruleSpecificIndex++){
+			// 		// 		myStore.query('logicalexpression',{admissionrule: studentChoicesArr[ruleIndex][ruleSpecificIndex]}).then(function (expression) {
+			// 		// 			var oneTempArray = [];
+			// 		// 			for (var x = 0 ; x < expression.get('length'); x++){
+			// 		// 				var exp = expression.objectAt(x).get('booleanExp')
+			// 		// 				oneTempArray.push(exp);
+			// 		// 			}//end logical expressions
+			// 		// 			//console.log(oneTempArray);
+			// 		// 			fullTempArray.push(oneTempArray);
+			// 		// 		});
+			// 		// 	}
+			// 		// 	logicalExpressionArr.push(fullTempArray);
+			// 		// }//end of ruleIndex for loop
+			// 		// //console.log(logicalExpressionArr);
+			// 	});
 		//console.log("gradearray: ", gradesArray);
 	    },
 
