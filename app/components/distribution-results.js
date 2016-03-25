@@ -4,198 +4,181 @@ export default Ember.Component.extend({
 
 	store: Ember.inject.service(),
 
-  	isResulting: false,
-  	grades: null,
-  	firstname:null,
-  	student:null,
-  	grades:null,
-  	average:null,
-  	logicalExpression:null,
-  	name:null,
-  	itrprograms:null,
-  	test:null,
+  	// studentModel: Ember.computed(function(){
+   //  	return this.get('store').findAll('student');
+  	// }),
 
-  	studentModel: Ember.computed(function(){
-    	return this.get('store').findAll('students');
-  	}),
-  	studentSorting: ['cumAvg:desc'],
-  	sortedStudents: Ember.computed.sort('studentModel','studentSorting'),
+   //  coursecodeModel: Ember.computed(function(){
+   //    return this.get('store').findAll('coursecode');
+   //  }),
 
+   //  gradeModel: Ember.computed(function(){
+   //    return this.get('store').findAll('grade');
+   //  }),
+
+   //  itrprogramModel: Ember.computed(function(){
+   //    return this.get('store').findAll('itrprogram');
+   //  }),
+
+   //  academicprogramcodeModel: Ember.computed(function(){
+   //    return this.get('store').findAll('academicprogramcode');
+   //  }),
+
+   //  admissionruleModel: Ember.computed(function(){
+   //    return this.get('store').findAll('admissionrule');
+   //  }),
+
+   //  logicalexpressionModel: Ember.computed(function(){
+   //    return this.get('store').findAll('logicalexpression');
+   //  }),
 
   	actions: {
-  	//     distributeResults() {
-  	// 	    this.set('isResulting', true);
-			// var self = this;
-			// var myStore = this.get('store');
-			// var gradesArray = [];
-			// myStore.findAll('academicprogramcode');
-			// //gradesArray.push(1);
+	  	    distributeResults() 
+          {
+            this.set('isResulting', true);
+            var output;
+            var self = this;
+            var myStore = this.get('store');
+            myStore.queryRecord('student', {generate: "key"}).then(function (e) {
+            output=e.get('number');
+          }).then(function(){
+            if(out.innerText === undefined) out.textContent = output;
+            else out.innerText = output;
+            }
+          );
 
-			// //rank students by grade (haven't tested this yet..)
-			// this.set('student', myStore.findAll('student')).then(function(e){
-				
-			// 	//iterate through students
-			// 	for (var i = 0; i < e.get('length'); i++){
+	  		   //  this.set('isResulting', true);
+				    // var self = this;
+        //     var allStudents=this.get('studentModel').toArray();
+        //     var allCoursecodes=this.get('coursecodeModel').toArray();
+        //     var allGrades=this.get('gradeModel').toArray();
+        //     var allItrprograms=this.get('itrprogramModel').toArray();
+        //     var allAcademicprogramcodes=this.get('academicprogramcodeModel').toArray();
+        //     var allAdmissionrules=this.get('admissionruleModel').toArray();
+        //     var allLogicalExpressions=this.get('logicalexpressionModel').toArray();
 
-			// 		//change firstName to Average, then push
-			// 		gradesArray.push([e.objectAt(i).get('cumAvg'), e.objectAt(i).get('id')]);
-			// 	}					
-				
-			// 		//sort up this homie (descending)
-			// 		gradesArray.sort(function sortFunction(a, b) {
-			// 	    	if (a[0] === b[0]) {
-			// 	        	return 0;
-			// 		    }
-			// 		    else {
-			// 		        return (a[0] > b[0]) ? -1 : 1;
-			// 		    }
-			// 		});
-			// 		console.log(gradesArray); //gradesArray[0][1]
-					
-			// 		var studentChoicesArr = [];
-			// 		//loop from here, change hard code upper bound
-			// 		for (var allStudents = 0; allStudents < 1; allStudents++ ){
-			//        		myStore.query('itrprogram',{student: gradesArray[allStudents][1]}).then(function (studentChoices) {
-			//        			//console.log(studentChoices);
-			//        			//iterate through the student choices
-			//        			for (var a = 0; a < studentChoices.get('length'); a++){
-			 					
-			//  					//**get the id of a program and grab the entire object to get the admissionrule id**//
-			//  					var id = studentChoices.objectAt(a).get('academicprogramcode').get('id');
-			//  					var program = myStore.peekRecord('academicprogramcode', id);
-			//  					var admissionRuleId = program.get('admissionrule').get('id');
-			//  					//console.log(admissionRuleId);
-			 					
-			//  					myStore.query('logicalexpression',{admissionrule: admissionRuleId}).then(function (expression) {
-			//  							for (var x = 0 ; x < expression.get('length'); x++){
-			//  								//console.log(expression.objectAt(x).get('booleanExp'));
+        //     // Ember.Logger.log(allStudents);
+        //     // console.log(allStudents.length);
 
-			//  								//get the students' average
-			//  								//gradesArray[allStudents][1] is the current grade ID
-			//  								//get the students ID
-			//  								//console.log(allStudents);
-			//  								var studentId = gradesArray[allStudents][1];
-			//  								//console.log(studentId);
-			//  								var student = myStore.peekRecord('student', studentId);
-			//  								var average = student.get('cumAvg');
-			//  								//.log(average);
-			//  								//var average = 90;
-			//  								//parse the logical expression
+        //     // Ember.Logger.log(allCoursecodes);
+        //     // console.log(allCoursecodes.length);
 
-			//  							}//end logical expressions
-			//  					});
-			//  				}//end studentchoices for loop
-			//        		})
-			// 		}//end allstudents for loop
-			// 	});
-	  //   },
+        //     // Ember.Logger.log(allGrades);
+        //     // console.log(allGrades.length);
 
+        //     // Ember.Logger.log(allAcademicprogramcodes);
+        //     // console.log(allAcademicprogramcodes.length);
 
-  	    distributeResults() {
-  		    this.set('isResulting', true);
-			var self = this;
-			var myStore = this.get('store');
-			var gradesArray = [];
-			var studentChoicesArr = [];
-			var logicalExpressionArr = [];
-			myStore.findAll('academicprogramcode');
+        //     // Ember.Logger.log(allAdmissionrules);
+        //     // console.log(allAdmissionrules.length);
 
-			myStore.query('student', {generate: "key"}).then(function (studentChoices) {
-				console.log(studentChoices);
-			});
+        //     // Ember.Logger.log(allLogicalExpressions);
+        //     // console.log(allLogicalExpressions.length);
+            
+        //     //first sort the students by admissionaverage insertionsort
 
-			// self.set('test', myStore.findAll('student')).then(function(e){
-			// 	console.log(e.get('length'))
+        //     //pull everything from students you will need
+        //     var cleanedStudents=new Array(allStudents.length);
+        //     for(var i=0;i<allStudents.length;i++)
+        //     {
+        //       cleanedStudents[i]=new Array(3);
+        //       cleanedStudents[i][0]=allStudents[i].get('id');
+        //       cleanedStudents[i][1]=allStudents[i].get('number');
+        //       cleanedStudents[i][2]=allStudents[i].get('cumAvg');
+        //       if(cleanedStudents[i][2]=="")
+        //       {
+        //         console.log("FOUND A NULL");
+        //         cleanedStudents[i][2]=0;
+        //       }
+        //     }
 
-			// });
-			// console.log(self.test.get('length'))
-			// //console.log(self.test)
-			//console.log(students.objectAt(0))
+        //     //insertion sort
+        //     for(var i = 0; i < cleanedStudents.length; i++) 
+        //     {
+        //       //console.log("In loop1 on student: "+i);
+        //       var tmp = cleanedStudents[i];
+        //       for(var j = i - 1; j >= 0 && (parseFloat(cleanedStudents[j][2]) < parseFloat(tmp[2])); j--) 
+        //       {
+        //         cleanedStudents[j+1] = cleanedStudents[j];
+        //       }
+        //       cleanedStudents[j+1] = tmp;
+        //     }
 
+        //     var cleanedAcademicprogramcodes=new Array(allAcademicprogramcodes.length);
+        //     for(var i=0;i<allAcademicprogramcodes.length;i++)
+        //     {
+        //       cleanedAcademicprogramcodes[i]=new Array(2);
+        //       cleanedAcademicprogramcodes[i][0]=allAcademicprogramcodes[i].get('id');
+        //       cleanedAcademicprogramcodes[i][1]=allAcademicprogramcodes[i].get('name');
+        //       console.log(cleanedAcademicprogramcodes[i]);
+        //     }
 
-			//gradesArray.push(1);
-			//console.log(self.test.objectAt(0));
-			//rank students by grade (haven't tested this yet..)
+        //     //find all itrprograms
+        //     console.log(allItrprograms[0].get('academicprogramcode'));
+        //     var cleanedItr=new Array(allItrprograms.length);
+        //     for(var i=0;i<allItrprograms.length;i++)
+        //     {
+        //       cleanedItr[i]=new Array(6);
+        //       cleanedItr[i][0]=allItrprograms[i].get('student').get('id');
+        //       cleanedItr[i][1]=allItrprograms[i].get('order');
+        //       cleanedItr[i][2]=allItrprograms[i].get('academicprogramcode').get('id');
+        //     }
+        //     //index 0 - studentNum, 1-rank, 2-academicprogramcodeid
+        //       // var done=false;
+        //       // for(var j=0;j<allAcademicprogramcodes.length;j++)
+        //       // {
+        //       //   if(!done)
+        //       //   {
+        //       //     if(cleanedItr[i][2]=allAcademicprogramcodes[j].get('id'))
+        //       //     {
+        //       //       cleanedItr[i][3]=allAcademicprogramcodes[j].get('admissionrule').get('id');
+        //       //       cleanedItr[i][5]=allAcademicprogramcodes[j].get('name');
+                    
+        //       //       for(var p=0;p<allLogicalExpressions.length;p++)
+        //       //       {
+        //       //           if(cleanedItr[i][3]=allLogicalExpressions[p].get('admissionrule').get('id'))
+        //       //           {
+        //       //             cleanedItr[i][4]=allLogicalExpressions[p].get('booleanExp');
+        //       //             done=true;
+        //       //           }
+        //       //       }
+        //       //     }
+        //       //   }
+        //       // }
 
-			// for(var a = 0; a < self.sortedStudents.get('length'); a++){
-			// 	myStore.query('itrprogram',{student: self.sortedStudents.objectAt(a).get('id')}).then(function (studentChoices) {
-			// 		console.log(studentChoices.get('order'))
-			// 	})
-			// }
-			
+        //     //print
+        //     for(var i=0;i<cleanedItr.length;i++)
+        //     {
+        //       console.log(cleanedItr[i]);
+        //     }
 
-
-			// this.set('student', myStore.findAll('student')).then(function(e){
-				
-			// 	//iterate through students
-			// 	for (var i = 0; i < e.get('length'); i++){
-
-			// 		//change firstName to Average, then push
-			// 		gradesArray.push([e.objectAt(i).get('cumAvg'), e.objectAt(i).get('id')]);
-			// 	}					
-				
-			// 		//sort up this homie (descending)
-			// 		gradesArray.sort(function sortFunction(a, b) {
-			// 	    	if (a[0] === b[0]) {
-			// 	        	return 0;
-			// 		    }
-			// 		    else {
-			// 		        return (a[0] > b[0]) ? -1 : 1;
-			// 		    }
-			// 		});
-					
-			// 		//console.log(gradesArray);
-
-			// 		//var studentChoicesArr = [];
-			// 		//loop from here, change hard code upper bound
-			// 		for (var allStudents = 0; allStudents < 2; allStudents++ ){
-			//        		myStore.query('itrprogram',{student: gradesArray[allStudents][1]}).then(function (studentChoices) {
-			//        			var tempArr = [];
-			//        			for (var a = 0; a < studentChoices.get('length'); a++){
-			//        				var id = studentChoices.objectAt(a).get('academicprogramcode').get('id');
-			//  					var program = myStore.peekRecord('academicprogramcode', id);
-			//  					var admissionRuleId = program.get('admissionrule').get('id');
-			//        				tempArr.push(admissionRuleId);
-			//  				}//end studentchoices for loop
-			//  				studentChoicesArr.push(tempArr);
-			//  				//console.log(studentChoicesArr[1])
-			//        		})
-			// 		}//end allstudents for loop
-			// 		console.log(studentChoicesArr);
-			// 		console.log(studentChoicesArr[0]);
-
-			// 		//console.log(studentChoicesArr.firstObject);
-
-			// 		// for (var one in studentChoicesArr){
-			// 		// 	console.log(one);
-			// 		// }
-
-			// 		//console.log(studentChoicesArr[0]);
-			// 		//console.log(studentChoicesArr.length);
-			// 		// for(var ruleIndex = 0; ruleIndex < 2; ruleIndex++){
-			// 		// 	var fullTempArray = [];
-			// 		// 	for(var ruleSpecificIndex = 0; ruleSpecificIndex < 10; ruleSpecificIndex++){
-			// 		// 		myStore.query('logicalexpression',{admissionrule: studentChoicesArr[ruleIndex][ruleSpecificIndex]}).then(function (expression) {
-			// 		// 			var oneTempArray = [];
-			// 		// 			for (var x = 0 ; x < expression.get('length'); x++){
-			// 		// 				var exp = expression.objectAt(x).get('booleanExp')
-			// 		// 				oneTempArray.push(exp);
-			// 		// 			}//end logical expressions
-			// 		// 			//console.log(oneTempArray);
-			// 		// 			fullTempArray.push(oneTempArray);
-			// 		// 		});
-			// 		// 	}
-			// 		// 	logicalExpressionArr.push(fullTempArray);
-			// 		// }//end of ruleIndex for loop
-			// 		// //console.log(logicalExpressionArr);
-			// 	});
-		//console.log("gradearray: ", gradesArray);
-	    },
+        //     ////go through each student
+        //     // for(var i=0;i<cleanedStudents.length;i++)
+        //     // {
+        //     //   //find their Itrprograms
+        //     //   var havelist=false;
+        //     //   var notPlaced=true;
+        //     //   //console.log(cleanedStudents[i][1]);
+        //     //   for(var q=0;q<cleanedItr.length;q++)
+        //     //   {
+        //     //     console.log(cleanedItr[q][5]);
+        //     //     if(notPlaced)
+        //     //     {
+        //     //       if(cleanedItr[q][0]==cleanedStudents[i][0])
+        //     //       {
+        //     //         //check if they are eligible
+        //     //         notPlaced=false;
+        //     //         console.log("Student Number: "+cleanedStudents[i][1]+ "- Rank: "+cleanedItr[q][1]+"- Program: "+cleanedItr[q][5]+" - Exp:"+cleanedItr[q][5]);
+        //     //       }
+        //     //     }
+        //     //   }
+        //     // }
+			   },
 
 
-	    done() {
-  		      this.set('isResulting', false);
-	    },
+		    done() {
+				     this.set('isResulting', false);
+		    },
 
 	    
   }
