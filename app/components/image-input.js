@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   inputType: 'Students',
   inputTypes: ["Students", "Program Record and Grades", "Admission Rules", 
   	"Residencies", "Countries", "Provinces", "Cities", "Term Codes", "Degree Codes", 
-  	"Course Codes", "Faculties", "Departments", "Program Administration",
+  	"Course Codes", "Comment Codes", "Faculties", "Departments", "Program Administration",
   	"Admission Rules"],
   actions: {
     fileSelectionChanged: function(file) {

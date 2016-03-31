@@ -254,3 +254,17 @@ form .row .prefix-radius.row.collapse .prefix {
       margin: auto;
       padding: 0px 10px 20px 40px;
     }
+
+    .row .row {
+      margin: 0 0rem; 
+      max-width: none;
+      width: auto;
+    }
+
+    .button.primary.tiny.table {
+      margin: 0px 0px !important; 
+    }
+
+    fieldset.student{
+      border: none !important;
+    }

@@ -149,6 +149,44 @@ export default Ember.TextField.extend({
 				newResidency.save();
 			}
 
+			function process_commentcode_wb(wb){
+				var output = to_csv(wb);
+				var row = $.csv.toArrays(output);
+
+				for(var i=0; i<4; i++){
+					if(row[2][i].toLowerCase() == "code"){
+						var codeIndex = i;
+					}
+					else if(row[2][i].toLowerCase() == "progaction"){
+						var progactionIndex = i;
+					}
+					else if(row[2][i].toLowerCase() == "description"){
+						var descriptionIndex = i;
+					}
+					else if(row[2][i].toLowerCase() == "notes"){
+						var notesIndex = i;
+					}
+				}
+
+				for (var i=3; i<row.length; i++){
+					saveCommentcode(row[i][codeIndex], row[i][progactionIndex], row[i][descriptionIndex], row[i][notesIndex]);
+				}
+
+				if(out.innerText === undefined) out.textContent = output;
+				else out.innerText = output;
+			}
+
+			function saveCommentcode (code, progaction, description, notes) {
+				var myStore = self.get('store');
+				var newCommentcode = myStore.createRecord('commentcode', {
+					code: code,
+					progaction: progaction,
+					description: description,
+					notes: notes
+				});
+				newCommentcode.save();
+			}
+
 			function process_admissionrule_wb(wb){
 				var output = to_csv(wb);
 				var row = $.csv.toArrays(output);
@@ -602,6 +640,10 @@ export default Ember.TextField.extend({
 				else if (self.get('selectedInputType') == "Course Codes"){
 					process_coursecode_wb(workbook);
 					alert("Course codes imported successfully!");
+				}
+				else if (self.get('selectedInputType') == "Comment Codes"){
+					process_commentcode_wb(workbook);
+					alert("Comment codes imported successfully!");
 				}
 				else if (self.get('selectedInputType') == "Residencies"){
 					process_residency_wb(workbook);
