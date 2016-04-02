@@ -268,3 +268,19 @@ form .row .prefix-radius.row.collapse .prefix {
     fieldset.student{
       border: none !important;
     }
+
+    .distResults hr{
+      margin: 0.2rem -0.7rem 0.2rem;
+      border: solid #ECDAF7;
+      border-width:1px;
+      border-style: dashed;
+      /*border-width: 1px 0 0;*/
+    }
+
+    .distributionsbox{
+        background-color:#E9E6F3; 
+        padding:20px 20px 10px 0px;
+        border-top: 5px solid #502D82;
+        /*max-height:300px;*/
+        /*overflow:scroll;*/
+    }

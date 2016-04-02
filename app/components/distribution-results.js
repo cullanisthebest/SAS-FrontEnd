@@ -39,11 +39,25 @@ export default Ember.Component.extend({
             var output;
             var self = this;
             var myStore = this.get('store');
+
+            var dateObj = new Date();
+            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+            var day = dateObj.getUTCDate();
+            var year = dateObj.getUTCFullYear();
+            var newdate = day + "/" + month + "/" + year;
+
             myStore.queryRecord('student', {generate: "key"}).then(function (e) {
-            output=e.get('number');
+            //output=e.get('number');
+              // var newDistributionResult = myStore.createRecord('distributionresult', {
+              //   date: newdate,
+              //   result: output
+              // });
+              // newDistributionResult.save();
           }).then(function(){
-            if(out.innerText === undefined) out.textContent = output;
-            else out.innerText = output;
+            //if(out.innerText === undefined) out.textContent = output;
+            //else out.innerText = output;
+            //out.innerText = "Students have been distributed.\nYou can view the results below.";
+            out.innerText = "Students have been distributed.\nRefresh the page to view the results below.";
             }
           );
 

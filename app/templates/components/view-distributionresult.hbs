@@ -1,0 +1,28 @@
+{{#if  isViewingDistributionResult }}
+<div class="row">
+	<div class="large-12 columns">
+		<!-- <strong class="distResults">{{{programplacements}}}</strong> -->
+		<table>
+				<tr>
+					<th>Student</th>
+					<th>Placement</th>
+					<th>Choice</th>
+					<th>Edit</th>
+				</tr>
+
+				{{#each programplacements as |oneProgramplacements|}}
+				<tr>
+					<td>{{oneProgramplacements.student.number}} </td>
+					<td>{{oneProgramplacements.academicprogramcode.name}} </td>
+					<td>{{oneProgramplacements.choice}} </td>
+					<td>{{edit-programplacement ID=oneProgramplacements.id}}</td>
+				</tr>
+				{{/each}}
+			</table>
+		<br>
+		<a href="#" class="button primary tiny table" {{action 'cancel'}}>Done</a>
+	</div>
+</div>
+{{else}}
+	<a href="#" class="button primary tiny table"  {{action 'viewDistributionResult' ID}}>View</a>
+{{/if}}

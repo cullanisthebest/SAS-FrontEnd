@@ -1,0 +1,27 @@
+{{#if  isProgramruleFormEditing }}
+
+<div class="large-12 columns">
+	<div class="row collapse prefix-radius">
+		<div class="small-3 columns">
+			<span class="prefix">Rule</span>
+		</div>
+		<div class="small-9 columns">
+			<select onchange={{action (mut selectedProgramrule) value='target.value'}}>
+				<option selected="true" disabled="disabled">Select Rule</option>  
+				{{#each admissionruleModel as |admissionruleChoice|}}
+				<option value={{admissionruleChoice.id}} selected={{eq selectedProgramrule admissionruleChoice}}>{{admissionruleChoice.description}}</option>
+				{{/each}}
+			</select>
+		</div>
+	</div>
+	<br>
+	<a href="#" class="button primary tiny" {{action 'saveProgramrule'}}>Save</a>
+	<a href="#" class="button primary tiny" {{action 'cancel'}}>Cancel</a>
+</div>
+
+
+{{else}}
+
+<a href="#" class="button primary tiny table"  {{action 'editProgramrule' ID}}>Edit</a>
+
+{{/if}}

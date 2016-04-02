@@ -402,6 +402,43 @@ export default Ember.TextField.extend({
 				});
 			}
 
+			function process_studentchoices_wb(wb){
+				var output = to_csv(wb);
+				var row = $.csv.toArrays(output);
+
+				for(var i=0; i<1; i++){
+					if(row[2][i].toLowerCase() == "number")
+						var numberIndex = i;
+				}
+
+				for (var i=3; i<row.length; i++){
+					for(var j=1; j<11; j++){
+						saveStudentchoices(row[i][numberIndex], row[i][j], j);
+					}
+				}
+
+				if(out.innerText === undefined) out.textContent = output;
+				else out.innerText = output;
+			}
+
+			function saveStudentchoices (number, choice, order) {
+				var myStore = self.get('store');
+				myStore.query('student', {number: number}).then(function (students) {
+					var oneStudent = students.objectAt(0);
+
+					myStore.query('academicprogramcode', {name: choice}).then(function (academicprogramcodes) {
+						var oneAcademicprogramcode = academicprogramcodes.objectAt(0);
+
+						var newItrprogram = myStore.createRecord('itrprogram', {
+							order: order,
+							student: oneStudent,
+							academicprogramcode: oneAcademicprogramcode
+						});
+						newItrprogram.save();
+					});
+				});
+			}
+
 			function process_student_wb(wb) {
 				var output = to_csv(wb);
 				var row = $.csv.toArrays(output);
@@ -490,12 +527,17 @@ export default Ember.TextField.extend({
 				});
 			}
 
-			function process_programRecords_wb(wb){
+function process_programRecords_wb(wb){     	
 				var output = to_csv(wb);
 				var row = $.csv.toArrays(output);
-				var GradeHolder=new Array(4);
+				//var GradeHolder=new Array(4);
+				
 				//what student I'm on
 				var onStudentNumber=0;
+				var code;
+				var coursenumber;
+				var section;
+				var mark;
 				var programrecordHolder;
 				var studentNumber;
 				var termCodeName;
@@ -535,79 +577,193 @@ export default Ember.TextField.extend({
 					else if(row[2][i].toLowerCase() == "cumavg")
 						var cumAvgIndex = i;
 				}
-
 				for(var i=3; i<row.length; i++)
 				{
 					if(row[i][onStudentIndex]==onStudentNumber+1)
 					{
-						console.log("On student number: "+onStudentNumber);
+						//console.log("On student number: "+onStudentNumber);
 						onStudentNumber++;
+
 						//studentNumber
 						studentNumber=row[i][studentNumIndex];
+
 						//needed for program record
 						level=row[i][programrecordLevelIndex];
 						status=row[i][programrecordStatusIndex];
 						comment=row[i][programrecordCommentIndex];
+						
 						//needed for degreecode
 						degreeCodeName=row[i][degreecodeIndex];
+						
 						//needed for term code
 						termCodeName=row[i][termcodeIndex];
+						
 						//cumulative average
 						cumAvg = row[i][cumAvgIndex];
 					}
+					
 					//code
-					GradeHolder[4]=row[i][courseCodeIndex];
+					code=row[i][courseCodeIndex];
+					
 					//coursenumber
-					GradeHolder[0]=row[i][courseNumIndex];
+					coursenumber=row[i][courseNumIndex];
+					
 					//section
-					GradeHolder[1]=row[i][gradeSectionIndex];
+					section=row[i][gradeSectionIndex];
+					
 					//mark
-					GradeHolder[2]=row[i][gradeMarkIndex];
+					mark=row[i][gradeMarkIndex];
 
-					if(GradeHolder[0]!=""){
-						saveProgramRecords(level, status, comment, cumAvg, degreeCodeName, termCodeName,
-							studentNumber, GradeHolder[1], GradeHolder[2], GradeHolder[0], GradeHolder[4]);
+					//Need a new program record
+					if(mark!=""){
+						saveProgramRecords(cumAvg, studentNumber, section, mark, coursenumber, code);
 					}
 				}
 				if(out.innerText === undefined) out.textContent = output;
 				else out.innerText = output;
 			}
-	        function saveProgramRecords (level, status, comment, cumAvg, degreeCodeName, termCodeName, studentNumber, section, mark, courseNumber, courseCode) {
+
+			function addOneProgramRecord(wb){     	
+				var output = to_csv(wb);
+				var row = $.csv.toArrays(output);
+				
+				//what student I'm on
+				var onStudentNumber=0;
+				var createdProgramRecord;
+				var code;
+				var coursenumber;
+				var section;
+				var mark;
+				var programrecordHolder;
+				var studentNumber;
+				var termCodeName;
+				var degreeCodeName;
+				var comment;
+				var level;
+				var cumAvg;
+				var firstRun=true;
+
+
+				for(var i=0; i<14; i++){
+					if(row[2][i].toLowerCase() == "")
+						var onStudentIndex = i;
+					else if(row[2][i].toLowerCase() == "student")
+						var studentNumIndex = i;
+					else if(row[2][i].toLowerCase() == "code")
+						var courseCodeIndex = i;
+					else if(row[2][i].toLowerCase() == "number")
+						var courseNumIndex = i;
+					else if(row[2][i].toLowerCase() == "section")
+						var gradeSectionIndex = i;
+					else if(row[2][i].toLowerCase() == "name")
+						var courseNameIndex = i;
+					else if(row[2][i].toLowerCase() == "unit")
+						var courseUnitIndex = i;
+					else if(row[2][i].toLowerCase() == "mark")
+						var gradeMarkIndex = i;
+					else if(row[2][i].toLowerCase() == "level")
+						var programrecordLevelIndex = i;
+					else if(row[2][i].toLowerCase() == "status")
+						var programrecordStatusIndex = i;
+					else if(row[2][i].toLowerCase() == "comment")
+						var programrecordCommentIndex = i;
+					else if(row[2][i].toLowerCase() == "plan")
+						var degreecodeIndex = i;
+					else if(row[2][i].toLowerCase() == "semester")
+						var termcodeIndex = i;
+					else if(row[2][i].toLowerCase() == "cumavg")
+						var cumAvgIndex = i;
+				}
+				for(var i=3; i<4; i++)
+				{
+					if(row[i][onStudentIndex]==onStudentNumber+1)
+					{
+						//console.log("On student number: "+onStudentNumber);
+						onStudentNumber++;
+
+						//studentNumber
+						studentNumber=row[i][studentNumIndex];
+
+						//needed for program record
+						level=row[i][programrecordLevelIndex];
+						status=row[i][programrecordStatusIndex];
+						comment=row[i][programrecordCommentIndex];
+						
+						//needed for degreecode
+						degreeCodeName=row[i][degreecodeIndex];
+						
+						//needed for term code
+						termCodeName=row[i][termcodeIndex];
+						
+						//cumulative average
+						cumAvg = row[i][cumAvgIndex];
+					}
+					
+					//code
+					code=row[i][courseCodeIndex];
+					
+					//coursenumber
+					coursenumber=row[i][courseNumIndex];
+					
+					//section
+					section=row[i][gradeSectionIndex];
+					
+					//mark
+					mark=row[i][gradeMarkIndex];
+
+					createdProgramRecord=createProgramRecord(level,status,comment,degreeCodeName,termCodeName);
+				}
+			}
+
+	        function createProgramRecord (level,status,comment,degreecode,termcode) {
 		        var myStore = self.get('store');
-		        myStore.query('degreecode', {name: degreeCodeName}).then(function (degreecodes) {
-					var FoundDegreeCode = degreecodes.objectAt(0);
-					myStore.query('termcode', {name:termCodeName}).then(function (termcodes) {
-						var FoundtermCode = termcodes.objectAt(0);
-				        var newProgramRecord = myStore.createRecord('programrecord',{
+	    		myStore.query('degreecode', {number: degreecode}).then(function (degreecodes) {
+					var FoundDegreecode = degreecodes.objectAt(0);
+
+					myStore.query('termcode', {number:termcode}).then(function (termcodes) {
+						var FoundTermcode = termcodes.objectAt(0);
+						
+						console.log("createProgramRecord");
+
+
+						var newProgramRecord = myStore.createRecord('programrecord',{
 				        	level:level,
 				        	status:status,
 				        	comment:comment,
-				        	degreecode:FoundDegreeCode,
-				        	termcode:FoundtermCode
-				        });
-			        	newProgramRecord.save().then(() => {
-			        		var myStore = self.get('store');
-		    				myStore.query('student', {number: studentNumber}).then(function (students) {
-								var FoundStudent = students.objectAt(0);
-								FoundStudent.set('cumAvg', cumAvg); //set cumulative average for the student
-								FoundStudent.save();
-								myStore.query('coursecode', {number:courseNumber, code:courseCode}).then(function (coursecodes) {
-									var FoundCourse = coursecodes.objectAt(0);
-									var newGrade = myStore.createRecord('grade',{
-							        	mark:mark,
-							        	section:section,
-							        	student:FoundStudent,
-							        	coursecode:FoundCourse,
-							        	programrecord:newProgramRecord
-							    	});
-									newGrade.save().then(()=> {
-									});
-								});
-							});
+				        	degreecode:FoundDegreecode,
+				        	termcode:FoundTermcode
+				    	});
+
+				    	newProgramRecord.save();
+
+				    	return newProgramRecord;
+					});
+    			});
+			}
+
+			function saveProgramRecords (cumAvg, studentNumber, section, mark, courseNumber, courseCode) {
+		        var myStore = self.get('store');
+	    		myStore.query('student', {number: studentNumber}).then(function (students) {
+					var FoundStudent = students.objectAt(0);
+					FoundStudent.set('cumAvg', cumAvg);
+					FoundStudent.save();
+					myStore.query('coursecode', {number:courseNumber, code:courseCode}).then(function (coursecodes) {
+						var FoundCourse = coursecodes.objectAt(0);
+						myStore.query('programrecord', {section:section}).then(function (programrecords) {
+							var Foundprog = programrecords.objectAt(0);
+							
+							var newGrade = myStore.createRecord('grade',{
+					        	mark:mark,
+					        	section:section,
+					        	student:FoundStudent,
+					        	coursecode:FoundCourse,
+					        	programrecord:Foundprog
+					    	});
+							newGrade.save();
 						});
 					});
-				});
-		    }
+    			});
+			}
 
 
 
@@ -665,7 +821,12 @@ export default Ember.TextField.extend({
 					process_department_wb(workbook);
 					alert("Departments imported successfully!");
 				}
+				else if (self.get('selectedInputType') == "Student Choices"){
+					process_studentchoices_wb(workbook);
+					alert("Student Choices imported successfully!");
+				}
 				else if (self.get('selectedInputType') == "Program Record and Grades"){
+					addOneProgramRecord(workbook);
 					process_programRecords_wb(workbook);
 					alert("Program records and grades imported successfully!");
 				}

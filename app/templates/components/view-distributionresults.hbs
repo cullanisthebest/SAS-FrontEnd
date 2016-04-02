@@ -1,0 +1,47 @@
+{{#if  isViewingDistributionResults }}
+<div class="distributionsbox">
+  <ul class="circle">
+    <h4 align="center">Distribution Results</h4>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+        <th>
+          Date
+        </th>
+        <th>
+          Results
+        </th>
+        <th>
+          Delete
+        </th>
+      </tr>
+      {{#each distributionresultModel as |distributionresultChoice|}}
+      <tr>
+        <td>
+          {{distributionresultChoice.id}}
+        </td>
+        <td>
+          {{distributionresultChoice.date}}
+        </td>
+        <td>
+          {{view-distributionresult ID=distributionresultChoice.id}}
+        </td>
+        <td>
+          {{delete-distributionresult ID=distributionresultChoice.id}}
+        </td>
+      </tr>
+      {{/each}}
+    </table>
+
+  </ul>
+</div>
+
+{{else}}
+<div class="row">
+  <div class="large-12 columns">
+    <a href="#" class="button primary tiny notmain" {{action 'viewDistributionResults'}}>View Distribution Results</a>
+  </div>
+</div>
+{{/if}}

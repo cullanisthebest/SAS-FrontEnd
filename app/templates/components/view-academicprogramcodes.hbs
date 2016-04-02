@@ -1,0 +1,35 @@
+{{#if  isViewingAcademicprogramcodes }}
+<div class="admissionsbox">
+	<ul class="circle">
+		<ul>
+			<h4 align="center">Programs</h4>
+			<table>
+				<tr>
+					<th>
+						Program
+					</th>
+					<th>
+						Admission Rule
+					</th>
+					<th>
+						Change Rule
+					</th>
+				</tr>
+				{{#each academicprogramcodeModel as |academicprogramcodeChoice|}}
+				<tr>
+					<td>
+						{{academicprogramcodeChoice.name}}
+					</td>
+					<td>
+						{{academicprogramcodeChoice.admissionrule.description}}
+					</td>
+					<td>
+						{{edit-academicprogramcoderule ID=academicprogramcodeChoice.id}}
+					</td>
+				</tr>
+				{{/each}}
+			</table>
+		</ul>
+	</ul>
+</div>
+{{/if}}

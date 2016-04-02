@@ -1,28 +1,21 @@
 <img src="assets/images/Western.gif">
-<h3>Distribution</h3>
-<div class="loadbox">
-<br>
+
 
 {{#if  isResulting }}
 
+<pre id="out"></pre>
+
 <div class="row">
   <div class="large-12 columns">
+  	<br>
     <a href="#" class="button tiny notmain" {{action 'done'}}>Done</a>
   </div>
 </div>
 
-<pre id="out"></pre>
-
 {{else}}
-
-<div class="row">
-  <div class="large-12 columns">
+	<br>
     <a href="#" class="button tiny notmain" {{action 'distributeResults'}}>Distribute Results</a>
-  </div>
-</div>
-
-
 {{/if}}
 
-<br>
-</div>
+
+{{view-distributionresults}}
