@@ -42,6 +42,7 @@
                 <div class="small-9 columns">
                   <select onchange={{action (mut selectedCoursecode) value="target.value"}}>
                     {{!--   <select onchange={{action 'selectCoursecode' value="target.value"}} > --}}
+                    <option selected="true" disabled="disabled">Select Course</option>
                     {{#each coursecodeModel as |coursecodeChoice|}}
                     <option value={{coursecodeChoice.id}} selected={{eq selectedCoursecode coursecodeChoice}}>{{coursecodeChoice.name}}</option>
                     {{/each}}

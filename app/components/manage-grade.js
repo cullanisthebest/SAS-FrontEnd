@@ -9,9 +9,6 @@ export default Ember.Component.extend({
 
     coursecodeModel: Ember.computed(function(){
       var self = this;
-        this.get('store').findAll('coursecode').then(function(records){
-        self.set ('selectedCoursecode', records.get('firstObject').get('id'));
-      });
       return this.get('store').findAll('coursecode');
     }),
 
