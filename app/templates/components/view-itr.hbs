@@ -1,0 +1,33 @@
+{{#if  isItrFormEditing }}
+<div class="row">
+	<div class="large-12 columns">
+		<br>
+		<hr/>
+		<h3 align="center">{{firstname}}'s ITR</h3>
+
+		<div class="row" align="center">
+			<table>
+				<tr>
+					<th>Choice #</th>
+					<th>Program</th>
+				</tr>
+
+				{{#each itrprograms as |oneItrprogram|}}
+				<tr>
+					<td>{{oneItrprogram.order}} </td>
+					<td>{{oneItrprogram.academicprogramcode.name}} </td>
+				</tr>
+				{{/each}}
+			</table>
+		</div>
+		<br>
+		<a href="#" class="button primary tiny" {{action 'cancel'}}>Done</a>
+	</div>
+</div>
+{{else}}
+
+<div class="large-1 columns">
+	<a href="#" class="button primary tiny"  {{action 'viewItr'}}>ITR</a>
+</div>
+
+{{/if}}

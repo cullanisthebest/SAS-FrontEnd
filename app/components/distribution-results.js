@@ -58,6 +58,7 @@ export default Ember.Component.extend({
             //else out.innerText = output;
             //out.innerText = "Students have been distributed.\nYou can view the results below.";
             out.innerText = "Students have been distributed.\nRefresh the page to view the results below.";
+            
             }
           );
 
