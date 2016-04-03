@@ -6,7 +6,7 @@ export default Ember.Route.extend({
     var self = this;
     authentication.fetch().then(
       function (success) {
-        self.transitionTo('students');
+        self.transitionTo('results');
     },
       function (error) {
       console.log("error -->" + error);
