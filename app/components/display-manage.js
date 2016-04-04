@@ -8,6 +8,9 @@ export default Ember.Component.extend({
   isManagingItrprograms: false,
   isManagingProgramadministration: false,
   isManagingAdmissionrules: false,
+    // ADDED MM
+  isManagingSecondaryschool: false,
+  // END ADDED MM
   model: null,
   
     model: Ember.computed(function(){
@@ -21,6 +24,9 @@ export default Ember.Component.extend({
       this.set('isManagingGrades', false);
       this.set('isManagingDistributionresults', false);
       this.set('isManagingItrprograms', false);
+            // ADDED MM
+      this.set('isManagingSecondaryschool', false);
+      // END ADDED MM
       this.set('isManagingProgramadministration', false);
       this.set('isManagingAdmissionrules', false);
     },
@@ -29,14 +35,31 @@ export default Ember.Component.extend({
       this.set('isManagingGrades', true);
       this.set('isManagingDistributionresults', false);
       this.set('isManagingItrprograms', false);
+            // ADDED MM
+      this.set('isManagingSecondaryschool', false);
+      // END ADDED MM
       this.set('isManagingProgramadministration', false);
       this.set('isManagingAdmissionrules', false);
     },
+        // ADDED MM
+    manageSecondaryschool() {
+      this.set('isManagingStudents', false);
+      this.set('isManagingGrades', false);
+      this.set('isManagingSecondaryschool', true);
+      this.set('isManagingDistributionresults', false);
+      this.set('isManagingItrprograms', false);
+      this.set('isManagingProgramadministration', false);
+      this.set('isManagingAdmissionrules', false);
+    },
+    // END ADDED MM
     manageDistributionresults() {
       this.set('isManagingStudents', false);
       this.set('isManagingGrades', false);
       this.set('isManagingDistributionresults', true);
       this.set('isManagingItrprograms', false);
+            // ADDED MM
+      this.set('isManagingSecondaryschool', false);
+      // END ADDED MM
       this.set('isManagingProgramadministration', false);
       this.set('isManagingAdmissionrules', false);
     },
@@ -45,6 +68,9 @@ export default Ember.Component.extend({
       this.set('isManagingGrades', false);
       this.set('isManagingDistributionresults', false);
       this.set('isManagingItrprograms', true);
+            // ADDED MM
+      this.set('isManagingSecondaryschool', false);
+      // END ADDED MM
       this.set('isManagingProgramadministration', false);
       this.set('isManagingAdmissionrules', false);
     },
@@ -53,6 +79,9 @@ export default Ember.Component.extend({
       this.set('isManagingGrades', false);
       this.set('isManagingDistributionresults', false);
       this.set('isManagingItrprograms', false);
+            // ADDED MM
+      this.set('isManagingSecondaryschool', false);
+      // END ADDED MM
       this.set('isManagingProgramadministration', true);
       this.set('isManagingAdmissionrules', false);
     },
@@ -61,6 +90,9 @@ export default Ember.Component.extend({
       this.set('isManagingGrades', false);
       this.set('isManagingDistributionresults', false);
       this.set('isManagingItrprograms', false);
+            // ADDED MM
+      this.set('isManagingSecondaryschool', false);
+      // END ADDED MM
       this.set('isManagingProgramadministration', false);
       this.set('isManagingAdmissionrules', true);
     }

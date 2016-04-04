@@ -3,8 +3,10 @@ import $ from 'jquery';
 
 export default Ember.Component.extend({
 	isStudentinfoFormEditing: false,
+	isViewingSecodarySchoolInfo: false,
 	store: Ember.inject.service(),
 	ID: null,
+	schools: null,
 
 actions: {
 
@@ -27,35 +29,48 @@ actions: {
 			self.set('lastname', student.get('lastName'));
 			self.set('number', student.get('number'));
 			self.set('dob', student.get('DOB'));
-
-			// student.get('resInfo').then(function(res){
-			// 	self.set('residency', res.get('name'));
-			// });
-
-			// student.get('gender').then(function(res){
-			// 	self.set('gender', res.get('name'));
-			// });
-
-			// student.get('country').then(function(res){
-			// 	self.set('country', res.get('name'));
-			// });
-
-			// student.get('province').then(function(res){
-			// 	self.set('province', res.get('name'));
-			// });
-
-			// student.get('city').then(function(res){
-			// 	self.set('city', res.get('name'));
-			// });
-
-			// student.get('academicload').then(function(res){
-			// 	self.set('academicload', res.get('name'));
-			// });
 		});
+
+	// Get the secondary school info
+		myStore.query('secondaryschool', {student: self.get('ID')}).then(function(schoolRecords){
+              self.set('schools', schoolRecords);
+          });
+
+		myStore.query('highschooladmissionaverage', {student: self.get('ID')}).then(function(highschooladmissionaverage){
+
+			//	var oneHSavg = highschooladmissionaverage.objectAt(0);
+              //self.set('hsavg', oneHSavg);
+             self.set('avgs', highschooladmissionaverage)
+
+              /*self.set('midYear', oneHSavg.get('midYear'));
+              self.set('last', oneHSavg.get('_final'));
+              self.set('grade11', oneHSavg.get('grade11'));*/
+              //Ember.Logger.log(oneHSavg.get('midYear'));
+        });
+        myStore.query('basisofadmission', {student: self.get('ID')}).then(function(basisofadmission){
+
+			//	var oneBasis = basisofadmission.objectAt(0);
+             // self.set('basis', oneBasis.get('basisCode'));
+            self.set('admissions', basisofadmission);
+              
+              //Ember.Logger.log(oneHSavg.get('midYear'));
+        });
+
+        myStore.query('scholarandawardcode', {student: self.get('ID')}).then(function(award){
+            self.set('awards', award);
+        });
 
 		this.set('isStudentinfoFormEditing', true);
 	},
 
+	viewSSInfo () {
+		this.set('isViewingSecodarySchoolInfo', true);
+	},
+
+	hideSSInfo () {
+		this.set('isViewingSecodarySchoolInfo', false);
+	},
+	
 	cancel () {
 		this.set('isStudentinfoFormEditing', false);
 	}

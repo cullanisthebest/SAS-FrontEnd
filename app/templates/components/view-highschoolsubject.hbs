@@ -1,0 +1,40 @@
+{{#if  isViewingSubjects }}
+<div>
+    <table>
+        <tr>
+        	<th>
+                Subject
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+        {{#each highschoolsubjectModel as |subject|}}
+        <tr>
+            <td>
+                {{subject.name}}
+            </td>
+            <td>
+                {{subject.description}}
+            </td>
+            <td>
+                {{delete-highschoolsubject ID=subject.id}}
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+    <div align="center">
+        <br>
+        <a href="#" class="button primary tiny table" {{action 'doneViewingSubjects'}}>Hide</a>
+    </div>
+</div>
+{{else}}
+<div class="row">
+  <div class="large-12 columns">
+    <a href="#" class="button tiny notmain" {{action 'viewSubjects'}}>View Subjects</a>
+  </div>
+</div>
+{{/if}}

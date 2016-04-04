@@ -8,6 +8,12 @@
       <li class="divider"></li>
 <!--       <li><a href="#" {{action 'manageDistributionresults'}}>Manage Distribution Results</a></li>
       <li class="divider"></li> -->
+
+      <!-- ADDED MM -->
+      <li><a href="#" {{action 'manageSecondaryschool'}}>Manage Secondary School</a></li>
+      <li class="divider"></li>
+      <!-- END ADDED MM -->
+
       <li><a href="#" {{action 'manageItrprograms'}}>Manage ITR Programs</a></li>
       <li class="divider"></li>
       <li><a href="#" {{action 'manageProgramadministration'}}>Manage Program Administration</a></li>
@@ -27,6 +33,18 @@
   {{manage-programrecord}}
   {{manage-grade}}
   
+  <!-- ADDED MM -->
+  {{else if isManagingSecondaryschool}}
+  {{manage-secondaryschool}}
+  {{manage-highschoolsubject}}
+  {{manage-highschoolcoursesmark}}
+  {{manage-scholarandawardcode}}
+  {{manage-basisofadmissioncode}}
+  {{manage-basisofadmission}}
+  {{manage-hsadmissionaverage}}
+  {{view-highschoolsubject}}
+  <!-- END ADDED MM -->
+    
   {{else if isManagingDistributionresults}}
   {{manage-distributionresult}}
   {{manage-commentcode}}

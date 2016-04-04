@@ -1,0 +1,108 @@
+{{#if  isManagingHSAverage }}
+
+
+<div class="row">
+  <div class="large-12 columns">
+    <br>
+    <h4 align="center">Add New High School Admission Average</h4>
+    <hr/>
+    <br>
+    <fieldset>
+      <legend>Please use the form below</legend>
+      <br>
+      <form>
+
+        <div class="row">
+          <div class="large-12 columns">
+              <div class="row collapse prefix-radius">
+                <div class="small-3 columns">
+                  <span class="prefix">Student</span>
+                </div>
+                <div class="small-9 columns">
+                  <select onchange={{action (mut selectedStudent) value="target.value"}}>
+                    {{#each studentModel as |studentChoice|}}
+                    <option value={{studentChoice.id}} selected={{eq selectedStudent studentChoice}}>{{studentChoice.number}}</option>
+                    {{/each}}
+                  </select>
+               </div>
+           </div>
+        </div>
+
+
+<br>
+<br>
+          <div class="large-12 columns">
+              <div class="row collapse prefix-radius">
+                <div class="small-3 columns">
+                  <span class="prefix">First</span>
+                </div>
+                <div class="small-9 columns">
+                {{input value=first type="number" min="0" max="100"}}
+              </div>
+           	   </div>
+           </div>
+
+           <div class="large-12 columns">
+              <div class="row collapse prefix-radius">
+                <div class="small-3 columns">
+                  <span class="prefix">Mid Year</span>
+                </div>
+                <div class="small-9 columns">
+                {{input value=mid type="number" min="0" max="100"}}
+              </div>
+           	   </div>
+           </div>
+
+           <div class="large-12 columns">
+              <div class="row collapse prefix-radius">
+                <div class="small-3 columns">
+                  <span class="prefix">Final</span>
+                </div>
+                <div class="small-9 columns">
+                {{input value=fin type="number" min="0" max="100"}}
+              </div>
+           	   </div>
+           </div>
+
+           <div class="large-12 columns">
+              <div class="row collapse prefix-radius">
+                <div class="small-3 columns">
+                  <span class="prefix">Grade 11</span>
+                </div>
+                <div class="small-9 columns">
+                {{input value=eleven type="number" min="0" max="100"}}
+              </div>
+           	   </div>
+           </div>
+
+          
+
+
+              
+              
+              
+              
+
+
+
+        </div>
+
+      </form>
+    </fieldset>
+    <br>
+    <a href="#" class="button primary tiny" {{action 'saveHSAvg'}}>Save</a>
+    <a href="#" class="button primary tiny" {{action 'cancelHSAvg'}}>Cancel</a>
+  </div>
+</div>
+
+
+
+{{else}}
+
+<div class="row">
+  <div class="large-12 columns">
+    <a href="#" class="button tiny notmain" {{action 'addHSAvg'}}>Add High School Admission Average</a>
+  </div>
+</div>
+
+{{/if}}

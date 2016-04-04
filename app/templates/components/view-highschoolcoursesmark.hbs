@@ -1,0 +1,38 @@
+{{#if  isViewingMarks }}
+<div>
+    <table>
+        <tr>
+        	<th>
+                Subject
+            </th>
+            <th>
+                Mark
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+        {{#each coursesmarks as |mark|}}
+        <tr>
+            <td>
+                {{mark.highschoolsubject.name}}
+            </td>
+            <td>
+                {{mark.grade}}
+            </td>
+            <td>
+                {{delete-highschoolcoursesmark ID=mark.id}}
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+    <div align="center">
+        <br>
+        <a href="#" class="button primary tiny table" {{action 'doneViewingMarks'}}>Hide</a>
+    </div>
+</div>
+{{else}}
+<div class="large-2 columns">
+    <a href="#" class="button primary tiny table" {{action 'viewMarks'}}>View</a>
+</div>
+{{/if}}

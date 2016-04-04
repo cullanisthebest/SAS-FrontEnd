@@ -89,6 +89,112 @@
             </table>
         </div>
         <br>
+
+        {{#if  isViewingSecodarySchoolInfo }}
+        <!-- ADDED MM -->
+        <h3 align="center">{{firstname}}'s Secondary School Information</h3>
+        <div class="row" align="center">
+            <table>
+                <tr>
+                    <td>
+                        <strong>Secondary School</strong>
+                    </td>
+                    <td>
+                        <strong>Marks</strong>
+                    </td>
+                    <td>
+                        <strong>Delete</strong>
+                    </td>
+                </tr>
+                {{#each schools as |school|}}
+                <tr>
+                    <td>
+                        {{school.name}}
+                    </td>
+                    <td>
+                        {{view-highschoolcoursesmark ID=school.id}}
+                    </td>
+                    <td>
+                        {{delete-secondaryschool ID=school.id}}
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+        <br>
+        <br>
+
+        <h3 align="center">{{firstname}}'s Admission Information</h3>
+        <div class="row" align="center">
+            <table>
+                {{#each avgs as |avg|}}
+                <tr>
+                    <td>
+                        <strong>Admission Average First</strong>
+                    </td>
+                    <td>
+                        {{avg.first}}
+                    </td>
+                    <td rowspan="4">{{delete-hsadmissionaverage ID=avg.id}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Admission Average Mid-Year</strong>
+                    </td>
+                    <td>
+                        {{avg.midYear}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Admission Average Final</strong>
+                    </td>
+                    <td>
+                        {{avg._final}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Admission Average Grade 11</strong>
+                    </td>
+                    <td>
+                        {{avg.grade11}}
+                    </td>
+                </tr>
+                {{/each}}
+                {{#each admissions as |adm|}}
+                <tr>
+                    <td>
+                        <strong>Basis of Admission</strong>
+                    </td>
+                    <td>
+                        {{adm.basisCode.name}}
+                    </td>
+                    <td>{{delete-basisofadmission ID=adm.id}}</td>
+                </tr>
+                {{/each}}
+                {{#each awards as |award|}}
+                <tr>
+                    <td>
+                        <strong>Award</strong>
+                    </td>
+                    <td>
+                        {{award.name}}
+                    </td>
+                    <td> {{delete-scholarandawardcode ID=award.id}} </td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+        <br>
+        <a href="#" class="button primary tiny"  {{action 'hideSSInfo'}}>Hide</a>
+
+        {{else}}
+            <a href="#" class="button primary tiny full"  {{action 'viewSSInfo'}}>View Secondary School Info</a>
+        {{/if}}
+        <!-- END ADDED MM -->
+
+        <br>
         <a href="#" class="button primary tiny" {{action 'cancel'}}>Done</a>
     </div>
 </div>

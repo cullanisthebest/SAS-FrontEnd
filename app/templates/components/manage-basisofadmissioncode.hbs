@@ -1,0 +1,49 @@
+{{#if  isManagingBAcode }}
+
+
+<div class="row">
+  <div class="large-12 columns">
+    <br>
+    <h4 align="center">Add Basis of Admission</h4>
+    <hr/>
+    <br>
+    <fieldset>
+      <legend>Please use the form below</legend>
+      <br>
+      <form>
+
+        <div class="row">
+          
+          <div class="large-12 columns">
+              <div class="row collapse prefix-radius">
+                <div class="small-3 columns">
+                  <span class="prefix">Basis of Admission Name</span>
+                </div>
+                <div class="small-9 columns">
+                {{input value=name type="text"}}
+              </div>
+           	   </div>
+           </div>
+
+
+        </div>
+
+      </form>
+    </fieldset>
+    <br>
+    <a href="#" class="button primary tiny" {{action 'saveBAcode'}}>Save</a>
+    <a href="#" class="button primary tiny" {{action 'cancelBAcode'}}>Cancel</a>
+  </div>
+</div>
+
+
+
+{{else}}
+
+<div class="row">
+  <div class="large-12 columns">
+    <a href="#" class="button tiny notmain" {{action 'addBAcode'}}>Add Basis of Admission Code</a>
+  </div>
+</div>
+
+{{/if}}
