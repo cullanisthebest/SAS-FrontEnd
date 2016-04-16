@@ -443,7 +443,9 @@ export default Ember.TextField.extend({
 				var output = to_csv(wb);
 				var row = $.csv.toArrays(output);
 
-				for(var i=0; i<9; i++){
+				//changed
+				for(var i=0; i<14; i++){
+				//
 					if(row[2][i] == "number")
 						var numberIndex = i;
 					else if(row[2][i] == "firstName")
@@ -464,28 +466,31 @@ export default Ember.TextField.extend({
 						var cityIndex = i;
 					else if(row[2][i] == "academicload")
 						var academicloadIndex = i;
+
+					//added
+					else if(row[2][i] == "hfirst")
+						var hfirstIndex = i;
+					else if(row[2][i] == "hmidyear")
+						var hmidyearIndex = i;
+					else if(row[2][i] == "hfinal")
+						var hfinalIndex = i;
+					else if(row[2][i] == "hgrade11")
+						var hgradeIndex = i;
+					//added
 				}
 
 				for (var i=3; i<row.length; i++){
-					// var myStore = self.get('store');
-					// myStore.query('student', {number: row[i][numberIndex]}).then(function (students) {
-					// 	if(students.objectAt(0)===undefined){
-							saveStudent(row[i][numberIndex], row[i][firstNameIndex], 
-								row[i][lastNameIndex], row[i][genderIndex], row[i][DOBIndex], 
-								row[i][residencyIndex], row[i][countryIndex], row[i][provinceIndex],
-								row[i][cityIndex], row[i][academicloadIndex]);
-					// 	}
-					// 	else{
-					// 		alert('There are no new students to import!');
-					// 	}
-					// });
+					saveStudent(row[i][numberIndex], row[i][firstNameIndex], 
+						row[i][lastNameIndex], row[i][genderIndex], row[i][DOBIndex], 
+						row[i][residencyIndex], row[i][countryIndex], row[i][provinceIndex],
+						row[i][cityIndex], row[i][academicloadIndex],row[i][hfirstIndex],row[i][hmidyearIndex],row[i][hfinalIndex],row[i][hgradeIndex]);
 				}
 
 				if(out.innerText === undefined) out.textContent = output;
 				else out.innerText = output;
 			}
 
-			function saveStudent (number, firstName, lastName, gender, DOB, residency, country, province, city, academicload) {
+			function saveStudent (number, firstName, lastName, gender, DOB, residency, country, province, city, academicload,first,midYear,finalG,grade11) {
 				var myStore = self.get('store');
 
 				myStore.query('residency', {name: residency}).then(function (residencies) {
@@ -518,7 +523,16 @@ export default Ember.TextField.extend({
 											city: oneCity,
 											academicload: oneAcademicload
 										});
-										newStudent.save()
+										newStudent.save().then(() => {
+											var newhighschooladmissionaverage=myStore.createRecord('highschooladmissionaverage',{
+												first: first,
+												midYear: midYear,
+												_final:finalG,
+												grade11:grade11,
+												student: newStudent
+											});
+											newhighschooladmissionaverage.save();
+										});
 									});
 								});
 							});

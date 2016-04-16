@@ -18,7 +18,7 @@ export default Ember.Component.extend({
     console.log("Made it to before query in view-le.js");
 
     myStore.query('logicalexpression', {admissionrule: this.get('ID')}).then(function (logicalexpressions) {
-      self.set('logicalexpressions',logicalexpressions) // first one will be used in each statement
+      self.set('logicalexpressions',logicalexpressions); // first one will be used in each statement
     });
 
     console.log("After query in view-le.js");

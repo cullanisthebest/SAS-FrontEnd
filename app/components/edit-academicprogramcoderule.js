@@ -4,9 +4,11 @@ export default Ember.Component.extend({
 	isProgramruleFormEditing: false,
 	store: Ember.inject.service(),
 	selectedProgramrule:null,
+	admissionruleModel:null,
 
 	admissionruleModel: Ember.computed(function(){
 		var self = this;
+		console.log(this.get('store').findAll('admissionrule'));
 		return this.get('store').findAll('admissionrule');
 	}),
 

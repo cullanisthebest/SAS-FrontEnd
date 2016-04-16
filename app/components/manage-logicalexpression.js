@@ -36,9 +36,9 @@ export default Ember.Component.extend({
     saveLogicalExpression (){
       //var wholeExp = ""
       var myStore = this.get('store');
-      var chosenCourse = 'AVG';
+      var chosenCourse = document.getElementById('myID').value;
       var chosenCourseNum = "";  
-      if(this.get('selectedCoursecode')!='AVG'){
+      if(chosenCourse!='AVG'&&chosenCourse!='HAVG'){
           var chosen = myStore.peekRecord('coursecode', this.get ('selectedCoursecode'));
           chosenCourse = chosen.get('code');
           chosenCourseNum = chosen.get('number');
@@ -52,9 +52,10 @@ export default Ember.Component.extend({
         document.getElementById('closeBracket').value," ");
 
       if(this.isAddingTologicalExpression1==true){
-        var chosenCourse1 = 'AVG';
+        var chosenCourse1 = document.getElementById('myID1').value;
+        console.log(this.get('selectedCoursecode1'));
         var chosenCourseNum1 = "";  
-        if(this.get('selectedCoursecode1')!='AVG'){
+        if(chosenCourse1!='AVG'&&chosenCourse1!='HAVG'){
             var chosen = myStore.peekRecord('coursecode', this.get ('selectedCoursecode1'));
             chosenCourse1 = chosen.get('code');
             chosenCourseNum1 = chosen.get('number');
@@ -70,9 +71,9 @@ export default Ember.Component.extend({
           document.getElementById('closeBracket1').value," ");
 
         if(this.isAddingTologicalExpression2==true){
-          var chosenCourse2 = 'AVG';
+          var chosenCourse2 = document.getElementById('myID2').value;
           var chosenCourseNum2 = "";  
-          if(this.get('selectedCoursecode2')!='AVG'){
+          if(chosenCourse2!='AVG'&&chosenCourse2!='HAVG'){
               var chosen = myStore.peekRecord('coursecode', this.get ('selectedCoursecode2'));
               chosenCourse2 = chosen.get('code');
               chosenCourseNum2 = chosen.get('number');
@@ -87,9 +88,9 @@ export default Ember.Component.extend({
             document.getElementById('closeBracket2').value," ");
 
           if(this.isAddingTologicalExpression3==true){
-            var chosenCourse3 = 'AVG';
+            var chosenCourse3 = document.getElementById('myID3').value;
             var chosenCourseNum3 = "";  
-            if(this.get('selectedCoursecode3')!='AVG'){
+            if(chosenCourse3!='AVG'&&chosenCourse3!='HAVG'){
               var chosen = myStore.peekRecord('coursecode', this.get ('selectedCoursecode3'));
               chosenCourse3 = chosen.get('code');
               chosenCourseNum3 = chosen.get('number');
@@ -104,9 +105,9 @@ export default Ember.Component.extend({
               document.getElementById('closeBracket3').value," ");
 
             if(this.isAddingTologicalExpression4==true){
-              var chosenCourse4 = 'AVG';
+              var chosenCourse4 = document.getElementById('myID4').value;
               var chosenCourseNum4 = "";  
-              if(this.get('selectedCoursecode4')!='AVG'){
+              if(chosenCourse4!='AVG'&&chosenCourse4!='HAVG'){
                   var chosen = myStore.peekRecord('coursecode', this.get ('selectedCoursecode4'));
                   chosenCourse4 = chosen.get('code');
                   chosenCourseNum4 = chosen.get('number');
@@ -121,9 +122,9 @@ export default Ember.Component.extend({
                 document.getElementById('closeBracket4').value," ");
 
               if(this.isAddingTologicalExpression5==true){
-                var chosenCourse5 = 'AVG';
+                var chosenCourse5 = document.getElementById('myID5').value;
                 var chosenCourseNum5 = "";  
-                if(this.get('selectedCoursecode5')!='AVG'){
+                if(chosenCourse5!='AVG'&&chosenCourse5!='HAVG'){
                     var chosen = myStore.peekRecord('coursecode', this.get ('selectedCoursecode5'));
                     chosenCourse5 = chosen.get('code');
                     chosenCourseNum5 = chosen.get('number');
@@ -139,9 +140,9 @@ export default Ember.Component.extend({
                   document.getElementById('closeBracket5').value," ");
 
                 if(this.isAddingTologicalExpression6==true){
-                  var chosenCourse6 = 'AVG';
+                  var chosenCourse6 = document.getElementById('myID6').value;
                   var chosenCourseNum6 = "";  
-                  if(this.get('selectedCoursecode6')!='AVG'){
+                  if(chosenCourse6!='AVG'&&chosenCourse6!='HAVG'){
                       var chosen = myStore.peekRecord('coursecode', this.get ('selectedCoursecode6'));
                       chosenCourse6 = chosen.get('code');
                       chosenCourseNum6 = chosen.get('number');
@@ -156,9 +157,9 @@ export default Ember.Component.extend({
                     document.getElementById('closeBracket6').value," ");
 
                   if(this.isAddingTologicalExpression7==true){
-                    var chosenCourse7 = 'AVG';
+                    var chosenCourse7 = document.getElementById('myID7').value;
                     var chosenCourseNum7 = "";  
-                    if(this.get('selectedCoursecode7')!='AVG'){
+                    if(chosenCourse7!='AVG'&&chosenCourse7!='HAVG'){
                         var chosen = myStore.peekRecord('coursecode', this.get ('selectedCoursecode7'));
                         chosenCourse7 = chosen.get('code');
                         chosenCourseNum7 = chosen.get('number');
@@ -173,9 +174,9 @@ export default Ember.Component.extend({
                       document.getElementById('closeBracket7').value," ");
 
                     if(this.isAddingTologicalExpression8==true){
-                      var chosenCourse8 = 'AVG';
+                      var chosenCourse8 = document.getElementById('myID8').value;
                       var chosenCourseNum8 = "";  
-                      if(this.get('selectedCoursecode8')!='AVG'){
+                      if(chosenCourse8!='AVG'&&chosenCourse8!='HAVG'){
                           var chosen = myStore.peekRecord('coursecode', this.get ('selectedCoursecode8'));
                           chosenCourse8 = chosen.get('code');
                           chosenCourseNum8 = chosen.get('number');
@@ -190,9 +191,9 @@ export default Ember.Component.extend({
                         document.getElementById('closeBracket8').value," ");
 
                       if(this.isAddingTologicalExpression9==true){
-                        var chosenCourse9 = 'AVG';
+                        var chosenCourse9 = document.getElementById('myID9').value;
                         var chosenCourseNum9 = "";  
-                        if(this.get('selectedCoursecode9')!='AVG'){
+                        if(chosenCourse9!='AVG'&&chosenCourse9!='HAVG'){
                             var chosen = myStore.peekRecord('coursecode', this.get ('selectedCoursecode9'));
                             chosenCourse9 = chosen.get('code');
                             chosenCourseNum9 = chosen.get('number');
@@ -207,9 +208,9 @@ export default Ember.Component.extend({
                           document.getElementById('closeBracket9').value," ");
 
                         if(this.isAddingTologicalExpression10==true){
-                          var chosenCourse10 = 'AVG';
+                          var chosenCourse10 = document.getElementById('myID10').value;
                           var chosenCourseNum10 = "";  
-                          if(this.get('selectedCoursecode10')!='AVG'){
+                          if(chosenCourse10!='AVG'&&chosenCourse10!='HAVG'){
                               var chosen = myStore.peekRecord('coursecode', this.get ('selectedCoursecode10'));
                               chosenCourse10 = chosen.get('code');
                               chosenCourseNum10 = chosen.get('number');
@@ -224,9 +225,9 @@ export default Ember.Component.extend({
                             document.getElementById('closeBracket6').value," ");
 
                           if(this.isAddingTologicalExpression11==true){
-                            var chosenCourse11 = 'AVG';
+                            var chosenCourse11 = document.getElementById('myID11').value;
                             var chosenCourseNum11 = "";  
-                            if(this.get('selectedCoursecode11')!='AVG'){
+                            if(chosenCourse11!='AVG'&&chosenCourse11!='HAVG'){
                                 var chosen = myStore.peekRecord('coursecode', this.get ('selectedCoursecode11'));
                                 chosenCourse11 = chosen.get('code');
                                 chosenCourseNum11 = chosen.get('number');

@@ -49,9 +49,10 @@
               </div>
 
               <div class="small-3 columns">
-                <select onchange={{action (mut selectedCoursecode) value="target.value"}}>
+                <select id="myID" onchange={{action (mut selectedCoursecode) value="target.value"}}>
                   <option value=default>Select One</option>
                   <option value=AVG>AVG</option>
+                  <option value=HAVG>HAVG</option>
                   {{#each coursecodeModel as |coursecodeChoice|}}
                   <option value={{coursecodeChoice.id}} selected={{eq selectedCoursecode coursecodeChoice}}>{{coursecodeChoice.name}}</option>
                   {{/each}}
@@ -102,9 +103,10 @@
                 </div>
 
                 <div class="small-3 columns">
-                  <select onchange={{action (mut selectedCoursecode1) value="target.value"}}>
+                  <select id="myID1"onchange={{action (mut selectedCoursecode1) value="target.value"}}>
                     <option value=default>Select One</option>
                     <option value=AVG>AVG</option>
+                    <option value=HAVG>HAVG</option>
                     {{#each coursecodeModel as |coursecodeChoice1|}}
                     <option value={{coursecodeChoice1.id}} selected={{eq selectedCoursecode1 coursecodeChoice1}}>{{coursecodeChoice1.name}}</option>
                     {{/each}}
@@ -166,9 +168,10 @@
                 </div>
 
                 <div class="small-3 columns">
-                  <select onchange={{action (mut selectedCoursecode2) value="target.value"}}>
+                  <select id="myID2" onchange={{action (mut selectedCoursecode2) value="target.value"}}>
                     <option value=default>Select One</option>
                     <option value=AVG>AVG</option>
+                    <option value=HAVG>HAVG</option>
                     {{#each coursecodeModel as |coursecodeChoice2|}}
                     <option value={{coursecodeChoice2.id}} selected={{eq selectedCoursecode2 coursecodeChoice2}}>{{coursecodeChoice2.name}}</option>
                     {{/each}}
@@ -231,9 +234,10 @@
                 </div>
 
                 <div class="small-3 columns">
-                  <select onchange={{action (mut selectedCoursecode3) value="target.value"}}>
+                  <select id="myID3" onchange={{action (mut selectedCoursecode3) value="target.value"}}>
                     <option value=default>Select One</option>
                     <option value=AVG>AVG</option>
+                    <option value=HAVG>HAVG</option>
                     {{#each coursecodeModel as |coursecodeChoice3|}}
                     <option value={{coursecodeChoice3.id}} selected={{eq selectedCoursecode3 coursecodeChoice3}}>{{coursecodeChoice3.name}}</option>
                     {{/each}}
@@ -295,9 +299,10 @@
                 </div>
 
                 <div class="small-3 columns">
-                  <select onchange={{action (mut selectedCoursecode4) value="target.value"}}>
+                  <select id="myID4"onchange={{action (mut selectedCoursecode4) value="target.value"}}>
                     <option value=default>Select One</option>
                     <option value=AVG>AVG</option>
+                    <option value=HAVG>HAVG</option>
                     {{#each coursecodeModel as |coursecodeChoice4|}}
                     <option value={{coursecodeChoice4.id}} selected={{eq selectedCoursecode4 coursecodeChoice4}}>{{coursecodeChoice4.name}}</option>
                     {{/each}}
@@ -359,9 +364,10 @@
                 </div>
 
                 <div class="small-3 columns">
-                  <select onchange={{action (mut selectedCoursecode5) value="target.value"}}>
+                  <select id="myID5"onchange={{action (mut selectedCoursecode5) value="target.value"}}>
                     <option value=default>Select One</option>
                     <option value=AVG>AVG</option>
+                    <option value=HAVG>HAVG</option>
                     {{#each coursecodeModel as |coursecodeChoice5|}}
                     <option value={{coursecodeChoice5.id}} selected={{eq selectedCoursecode5 coursecodeChoice5}}>{{coursecodeChoice5.name}}</option>
                     {{/each}}
@@ -424,9 +430,10 @@
                 </div>
 
                 <div class="small-3 columns">
-                  <select onchange={{action (mut selectedCoursecode6) value="target.value"}}>
+                  <select id="myID6"onchange={{action (mut selectedCoursecode6) value="target.value"}}>
                     <option value=default>Select One</option>
                     <option value=AVG>AVG</option>
+                    <option value=HAVG>HAVG</option>
                     {{#each coursecodeModel as |coursecodeChoice6|}}
                     <option value={{coursecodeChoice6.id}} selected={{eq selectedCoursecode6 coursecodeChoice6}}>{{coursecodeChoice6.name}}</option>
                     {{/each}}
@@ -488,9 +495,10 @@
                 </div>
 
                 <div class="small-3 columns">
-                  <select onchange={{action (mut selectedCoursecode7) value="target.value"}}>
+                  <select id="myID7"onchange={{action (mut selectedCoursecode7) value="target.value"}}>
                     <option value=default>Select One</option>
                     <option value=AVG>AVG</option>
+                    <option value=HAVG>HAVG</option>
                     {{#each coursecodeModel as |coursecodeChoice7|}}
                     <option value={{coursecodeChoice7.id}} selected={{eq selectedCoursecode7 coursecodeChoice7}}>{{coursecodeChoice7.name}}</option>
                     {{/each}}
@@ -552,9 +560,10 @@
                 </div>
 
                 <div class="small-3 columns">
-                  <select onchange={{action (mut selectedCoursecode8) value="target.value"}}>
+                  <select id="myID8" onchange={{action (mut selectedCoursecode8) value="target.value"}}>
                     <option value=default>Select One</option>
                     <option value=AVG>AVG</option>
+                    <option value=HAVG>HAVG</option>
                     {{#each coursecodeModel as |coursecodeChoice8|}}
                     <option value={{coursecodeChoice8.id}} selected={{eq selectedCoursecode8 coursecodeChoice8}}>{{coursecodeChoice8.name}}</option>
                     {{/each}}
@@ -616,9 +625,10 @@
                 </div>
 
                 <div class="small-3 columns">
-                  <select onchange={{action (mut selectedCoursecode9) value="target.value"}}>
+                  <select id="myID9" onchange={{action (mut selectedCoursecode9) value="target.value"}}>
                     <option value=default>Select One</option>
                     <option value=AVG>AVG</option>
+                    <option value=HAVG>HAVG</option>
                     {{#each coursecodeModel as |coursecodeChoice9|}}
                     <option value={{coursecodeChoice9.id}} selected={{eq selectedCoursecode9 coursecodeChoice9}}>{{coursecodeChoice9.name}}</option>
                     {{/each}}
@@ -680,9 +690,10 @@
                 </div>
 
                 <div class="small-3 columns">
-                  <select onchange={{action (mut selectedCoursecode10) value="target.value"}}>
+                  <select id="myID10"onchange={{action (mut selectedCoursecode10) value="target.value"}}>
                     <option value=default>Select One</option>
                     <option value=AVG>AVG</option>
+                    <option value=HAVG>HAVG</option>
                     {{#each coursecodeModel as |coursecodeChoice10|}}
                     <option value={{coursecodeChoice10.id}} selected={{eq selectedCoursecode10 coursecodeChoice10}}>{{coursecodeChoice10.name}}</option>
                     {{/each}}
@@ -744,9 +755,10 @@
                 </div>
 
                 <div class="small-3 columns">
-                  <select onchange={{action (mut selectedCoursecode11) value="target.value"}}>
+                  <select id="myID11"onchange={{action (mut selectedCoursecode11) value="target.value"}}>
                     <option value=default>Select One</option>
                     <option value=AVG>AVG</option>
+                    <option value=HAVG>HAVG</option>
                     {{#each coursecodeModel as |coursecodeChoice11|}}
                     <option value={{coursecodeChoice11.id}} selected={{eq selectedCoursecode11 coursecodeChoice11}}>{{coursecodeChoice11.name}}</option>
                     {{/each}}
